@@ -11,7 +11,7 @@ class AmenityDB{
             }
             else{
                 respond.json(result);
-            }s
+            }
         });
     }
 }

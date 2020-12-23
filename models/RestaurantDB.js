@@ -11,7 +11,7 @@ class RestaurantDB{
             }
             else{
                 respond.json(result);
-            }s
+            }
         });
     }
 

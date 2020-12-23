@@ -4,9 +4,10 @@ function initialize(){
     fetchRestaurants();
     fetchAmenityTable();
     fetchCuisineTable();
+    displayRestaurants();
 }
 
-displayRestaurants(){
+function displayRestaurants(){
     var table = document.getElementById("restaurantsTable");
     table.innerHTML = "";    
     totalRestaurants = restaurant_array.length;    
