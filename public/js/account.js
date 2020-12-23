@@ -2,6 +2,7 @@ var response = "";
 function login(){
     var credentials = new Object();
     credentials.username = document.getElementById("username").value;
+    username = credentials.username;
     credentials.password = document.getElementById("password").value;
     var request = new XMLHttpRequest();
     request.open("POST", "/login", true);
@@ -9,7 +10,6 @@ function login(){
     request.onload = function(){
         response = JSON.parse(request.responseText);
         if (response = "SUCCESS!"){
-            username = credentials.username;
             window.location.href = "home.html";
         }
         //document.getElementById("loginForm").style.display="none";

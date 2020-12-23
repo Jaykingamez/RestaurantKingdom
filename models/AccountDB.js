@@ -4,7 +4,7 @@ var fs = require('fs');
 var formidable = require('formidable');
 var db = require('../db-connection');
 const Account = require('./Account');
-const folderLocation = process.cwd() + '/images/profile_photo/';
+const folderLocation = '/images/profile_photo/';
 
 class AccountDB{
     getLoginCredentials(request, respond){
