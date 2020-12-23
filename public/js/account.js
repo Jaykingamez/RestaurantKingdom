@@ -36,34 +36,20 @@ function register(){
         }
     };
     request.send(formData);
-
-    // var credentials = new Object();
-    // credentials.username = document.getElementById("register-username").value;
-    // credentials.password = document.getElementById("register-password").value;
-    // credentials.firstName = document.getElementById("register-first-name").value;
-    // credentials.lastName = document.getElementById("register-last-name").value;
-    // credentials.gender = document.getElementById("register-gender").value;
-    // credentials.address = document.getElementById("register-address").value;
-    // credentials.mobile = document.getElementById("register-mobile").value;
-    // credentials.email = document.getElementById("register-email").value;
-    // credentials.uploadImg = document.getElementById("upload_img").files[0]; 
-    // //console.log(credentials.uploadImg.filename);
-    // var request = new XMLHttpRequest();
-    // request.open("POST", "/register", true);
-    // request.setRequestHeader("Content-Type", "multipart/form-data");
-    // request.onload = function(){
-    //     response = JSON.parse(request.responseText);
-    // };
-    // request.send(JSON.stringify(credentials));
 }
 
-// function sendFile(){
-//     var request = new XMLHttpRequest();
-//     request.open("POST", "/register", true);
-//     request.setRequestHeader("Content-Type", "multipart/form-data");
-//     request.onload = function(){
-//         response = JSON.parse(request.responseText);
-//     };
-//     request.send(request);
-// }
+function fetchAccount(){
+    var request = new XMLHttpRequest();
+
+    request.open('GET', account_url + "/" + username, true);
+
+    //This command starts the calling of the accounts api
+    request.onload = function() {
+    //get all the account information into our account variable
+    account = JSON.parse(request.responseText);
+    };
+
+    request.send();
+}
+
 

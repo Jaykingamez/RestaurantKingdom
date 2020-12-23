@@ -9,5 +9,7 @@ var username = null;
 var account = null;
 
 var amenity_url = "/amenity"
+var amenity_table = null;
 
 var cuisine_url = "/cuisine"
+var cuisine_table = null;
