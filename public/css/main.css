@@ -1,0 +1,125 @@
+/* index.html css */
+/*---------------------------------------------------------------------------*/
+form{
+    width: 50%;
+}
+
+form label{
+    padding: 10px;
+    display: block;
+}
+
+form button{
+    /*display: inline-block;*/
+    margin-bottom: 10px;
+    padding: 7.5px 50px;
+    border-radius: 10px;
+    
+}
+
+form div{
+    /*display: inline-block;*/
+    /*margin-bottom: 10px;*/ 
+    vertical-align: top;   
+}
+/* home.html css */
+/*---------------------------------------------------------------------------*/
+
+
+body{
+    width: 100%
+}
+
+.align-top{
+    display:inline-block;
+    vertical-align: top; 
+}
+
+.pad30{
+    padding: 30px;
+}
+
+.go-right{
+    float: right;
+}
+
+.go-left{
+    float: left;
+}
+
+.auto-margin{
+    margin: 0 auto;
+}
+
+.flex{
+    display: flex;  
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.arbitrary-width{
+    width: 50%;
+}
+
+.searchbox{
+    display: inline-block;
+    padding: 20px;
+}
+
+/* register.html css */
+/*---------------------------------------------------------------------------*/
+
+.centered{
+    text-align: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+
+.space-between{
+    justify-content: space-between;
+}
+.small-margin{
+    margin: 0 10px;
+}
+
+.width100{
+    width: 100%
+}
+
+.block{
+    display: block;
+}
+
+
+#upload_img_div{
+    /*margin-top: 100px;*/
+    margin-left: 45px;
+    padding:10px;
+
+
+
+}
+

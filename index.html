@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Restaurant Kingdom</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <!-- Needed for Google Login-->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <!-- Needed for Facebook Login-->
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0&appId=735783033951073&autoLogAppEvents=1" nonce="3Z5XGfmJ"></script>
+
+        <meta name="google-signin-client_id" content="677532359284-0qorvkmbjqi03p0rb92ou4k24crqi89f.apps.googleusercontent.com">
+
+        <link rel="stylesheet" type="text/css" href="public/css/main.css">
+
+        <script type="text/javascript" src="public/js/main.js"></script>
+        <script type="text/javascript" src="public/js/account.js"></script>
+    </head>
+    <body>
+
+        <img src="https://i.pinimg.com/originals/9d/20/a9/9d20a9d0347f9e68c2fca7b816222ca6.jpg" 
+            class="img-fluid center-block" width="500" height="500" alt="Cute anime girl" ">
+
+        <form class="center-block text-center" id="loginForm" onsubmit='return false;'>
+            <label for="username">Username:
+                <input type="text" placeholder="Enter Username" id="username" name="username" required>
+            </label> 
+        
+            <label for="password">Password:
+                <input type="password" placeholder="Enter Password" id="password" name="password" required>
+            </label>
+            
+            <div class="fb-login-button" id="facebookLogin" data-scope="public_profile,email"  data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width="200px"></div>
+            <button type="submit" value="submit" onclick="login()">Login</button>
+            <div class="g-signin2 inline-block" id="googleLogin" data-onsuccess="onSignIn"></div>
+
+        </form>
+
+        <br>
+
+        <div class="text-center">
+            <button>Create new account</button>
+            <button>Forgot Password?</button>
+        </div>
+        
+    </body>
+</html>
