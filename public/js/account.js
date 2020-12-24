@@ -2,7 +2,7 @@ var response = "";
 function login(){
     var credentials = new Object();
     credentials.username = document.getElementById("username").value;
-    username = credentials.username;
+    localStorage.setItem("username", credentials.username);
     credentials.password = document.getElementById("password").value;
     var request = new XMLHttpRequest();
     request.open("POST", "/login", true);
@@ -25,7 +25,6 @@ function displayImage(event){
 function register(){
     var formElement = document.getElementById("register-form");
     var formData = new FormData(formElement);
-
     var request = new XMLHttpRequest();
     request.open("POST", "/register", true);
     //request.setRequestHeader("Content-Type", "multipart/form-data");

@@ -23,10 +23,10 @@ var https = require('https');
 
 var host = "localhost";
 var port = 8080;
-var startPage = "index.html";
+var startPage = "ndex.html";
 
 
-app.use(express.static("./"));
+app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

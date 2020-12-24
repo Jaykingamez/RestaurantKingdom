@@ -4,7 +4,7 @@ var fs = require('fs');
 var formidable = require('formidable');
 var db = require('../db-connection');
 const Account = require('./Account');
-const folderLocation = '/images/profile_photo/';
+const folderLocation = '/public/images/profile_photo/';
 
 class AccountDB{
     getLoginCredentials(request, respond){
@@ -117,10 +117,10 @@ class AccountDB{
             if (files.upload_img){
                 var file = files.upload_img;
                 var oldPath = file.path;
-                var newPath = folderLocation + filename;
+                var newPath = process.cwd() + folderLocation + filename;
                 console.log(filename);
                 console.log(newPath);
-                fs.rename(oldPath, newPath, (error) => {
+                fs.rename(oldPath,  newPath, (error) => {
                     if(error) reject(error);
                     console.log("Moved file!");
                     resolve("Moved file!");
