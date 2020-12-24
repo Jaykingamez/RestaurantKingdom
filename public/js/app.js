@@ -13,3 +13,7 @@ var amenity_table = null;
 
 var cuisine_url = "/cuisine"
 var cuisine_table = null;
+
+//temporary changing variables
+var restaurant_cuisine = null;
+var restaurant_amenity = null;
