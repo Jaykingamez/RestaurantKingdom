@@ -118,8 +118,12 @@ body{
     /*margin-top: 100px;*/
     margin-left: 45px;
     padding:10px;
+}
 
+/* home.html css */
+/*---------------------------------------------------------------------------*/
 
-
+.larger_tags{
+    font-size: 1.2em;
 }
 

@@ -9,10 +9,10 @@ var username = null;
 var account = null;
 
 var amenity_url = "/amenity"
-var amenity_table = null;
+var amenity_table = {};
 
 var cuisine_url = "/cuisine"
-var cuisine_table = null;
+var cuisine_table = {};
 
 //temporary changing variables
 var restaurant_cuisine = null;

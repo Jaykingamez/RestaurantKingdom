@@ -63,10 +63,11 @@ function displayRestaurants(){
                             '</a>'+
                         '</div>' +
                         '<h3 class="centered">' + restaurantName + '</h3>';
-        cell = addOnTags(restaurantId, cell);
-        cell += '</div>'
-        
-        table.insertAdjacentHTML('beforeend', cell);    
+        addOnTags(restaurantId, cell).then( (returned_cell) => {
+            cell = returned_cell;
+            cell += '</div>'
+            table.insertAdjacentHTML('beforeend', cell); 
+        });
     }   
           
 }
@@ -79,23 +80,28 @@ function displayRestaurantDetails(element){
     document.getElementById("opening-time").textContent = restaurant_array[item]["opening_time"];
     document.getElementById("closing-time").textContent = restaurant_array[item]["closing_time"];
     document.getElementById("telephone-number").textContent = restaurant_array[item]["telephone_number"];
+    addOnTags(restaurant_array[item]["restaurant_id"], "").then( (returned_html) => {
+        document.getElementById("tag-column").innerHTML = returned_html;
+     });
+
+     
 }
 
 function addOnTags(restaurantId, cell){
-    fetchRestaurantAmenity(restaurantId).then( () =>{
-        for (var count = 0; count < restaurant_amenity.length; count++){
-            cell += '<div>' +
-                        '<span class="badge badge-pill badge-dark font-weight-bold float-left">' + amenity_table[restaurant_amenity[count]["amenity_id"]] + '</span>'
-                    '</div>';
-        }
-        return fetchRestaurantCuisine(restaurantId);
-    }).then( () => {
-        for (var count = 0 ; count < restaurant_cuisine.length ; count++){
-            cell += '<div>' +
-                        '<span class="badge badge-pill badge-dark font-weight-bold float-left">' + cuisine_table[restaurant_cuisine[count]["cuisine_id"]] + '</span>'
-                    '</div>';
-        }
-        console.log(cell);
-        return cell;
-    }).catch((error) => { console.log(error);});
+    return new Promise((resolve, reject) => {
+        fetchRestaurantAmenity(restaurantId).then( () =>{
+            for (var count = 0; count < restaurant_amenity.length; count++){
+                //console.log(amenity_table[restaurant_amenity[count]["amenity_id"]]);
+                cell += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags float-left">' + amenity_table[restaurant_amenity[count]["amenity_id"]] + '</span>';
+            }
+            return fetchRestaurantCuisine(restaurantId);
+        }).then( () => {
+            for (var count = 0 ; count < restaurant_cuisine.length ; count++){
+                //console.log(cuisine_table[restaurant_cuisine[count]["cuisine_id"]]);
+                cell += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags float-left">' + cuisine_table[restaurant_cuisine[count]["cuisine_id"]] + '</span>';     
+            }
+            //console.log(cell);
+            resolve(cell);
+        }).catch((error) => { console.log(error);});
+    });
 }
