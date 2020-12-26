@@ -14,6 +14,9 @@ var amenity_table = {};
 var cuisine_url = "/cuisine"
 var cuisine_table = {};
 
-//temporary changing variables
+//store cuisines and amenities related to restaurant respectively
 var restaurant_cuisine = null;
 var restaurant_amenity = null;
+
+var starBWImage = "https://img.icons8.com/carbon-copy/100/000000/star.png";
+var starImage = "https://img.icons8.com/plasticine/100/000000/star--v1.png";
