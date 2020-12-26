@@ -59,7 +59,7 @@ function displayRestaurants(){
         var cell = '<div class="col-md-3" style="float: none; margin: 0 auto;">' +                          
                         '<div >' + 
                             '<a id="restaurants" href="#restaurantModal" data-toggle="modal" data-target="#restaurantModal" item=' + count + '>'+
-                                '<img class="img-fluid" width="500" height="250" src=' + restaurantPicture + ' item=' + count + ' onclick="displayRestaurantDetails(this)" />'+
+                                '<img class="img-fluid" width="400" height="250" src=' + restaurantPicture + ' item=' + count + ' onclick="displayRestaurantDetails(this)" />'+
                             '</a>'+
                         '</div>' +
                         '<h3 class="centered">' + restaurantName + '</h3>';
@@ -81,7 +81,7 @@ function displayRestaurantDetails(element){
     document.getElementById("closing-time").textContent = restaurant_array[item]["closing_time"];
     document.getElementById("telephone-number").textContent = restaurant_array[item]["telephone_number"];
     addOnTags(restaurant_array[item]["restaurant_id"], "").then( (returned_html) => {
-        document.getElementById("tag-column").innerHTML = returned_html;
+        document.getElementById("tag-row").innerHTML = returned_html;
      });
 
      
@@ -92,13 +92,13 @@ function addOnTags(restaurantId, cell){
         fetchRestaurantAmenity(restaurantId).then( () =>{
             for (var count = 0; count < restaurant_amenity.length; count++){
                 //console.log(amenity_table[restaurant_amenity[count]["amenity_id"]]);
-                cell += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags float-left">' + amenity_table[restaurant_amenity[count]["amenity_id"]] + '</span>';
+                cell += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags">' + amenity_table[restaurant_amenity[count]["amenity_id"]] + '</span>';
             }
             return fetchRestaurantCuisine(restaurantId);
         }).then( () => {
             for (var count = 0 ; count < restaurant_cuisine.length ; count++){
                 //console.log(cuisine_table[restaurant_cuisine[count]["cuisine_id"]]);
-                cell += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags float-left">' + cuisine_table[restaurant_cuisine[count]["cuisine_id"]] + '</span>';     
+                cell += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags">' + cuisine_table[restaurant_cuisine[count]["cuisine_id"]] + '</span>';     
             }
             //console.log(cell);
             resolve(cell);

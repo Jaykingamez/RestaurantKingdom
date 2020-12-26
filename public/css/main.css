@@ -127,3 +127,19 @@ body{
     font-size: 1.2em;
 }
 
+.table_row_border{
+    border-bottom: 3em solid transparent;
+}
+
+tr.table_row_border, td{
+    border-top: 5px solid transparent;
+}
+
+.pad15{
+    padding: 15px;
+}
+
+.pad5{
+    padding: 5px;
+}
+
