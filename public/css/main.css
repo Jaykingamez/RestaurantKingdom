@@ -1,6 +1,6 @@
 /* index.html css */
 /*---------------------------------------------------------------------------*/
-form{
+#loginForm{
     width: 50%;
 }
 
@@ -88,6 +88,7 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+     margin-left: 0px;
   }
   
 .column {

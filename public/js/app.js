@@ -1,5 +1,6 @@
 var restaurant_url = "/restaurant";
 var restaurant_array = []; // This creates an empty restaurant array
+currentIndex = null;
 
 var review_url = "/review";
 var review_array = []; //This creates an empty review array

@@ -10,18 +10,17 @@
             <div class="modal-body px-5">
                 <!-- All input to be sent to server, and buttons must be within the 'form' tag -->
                 <form id="reviewForm">
-                    <div class="row" text-center id="reviewBody">
+                    <div class="row text-center"  id="reviewBody">
+
+                        <label for="userReview">Review</label>
+                        <textarea id="userReview" required class="form-control form-rounded" rows="3" cols="100%"></textarea>
 
                         <label for="rating">Rating</label>
                         <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="star" value="1" onclick="rateIt(this)" />
                         <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="star" value="2" onclick="rateIt(this)" />
                         <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="star" value="3" onclick="rateIt(this)" />
                         <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="star" value="4" onclick="rateIt(this)" />
-                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="star" value="5" onclick="rateIt(this)" />
-                        
-                        <label for="userReview">Review</label>
-                        <textarea id="userReview" required class="form-control form-rounded" rows="3" cols="100%"></textarea>
-                        
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="star" value="5" onclick="rateIt(this)" /> 
                     </div>
 
                     <div class="modal-footer">

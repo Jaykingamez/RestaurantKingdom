@@ -12,11 +12,11 @@ function fetchReviews() {
     request.send();
 }
 
-function newComment() {
+function newReview() {
     //Initialise each HTML input elements in the modal window with default value.
         rating = 0;
         document.getElementById("userReview").value = "";
-        document.getElementById("creator-review").value = username;
+        document.getElementById("creator-review").innerText = username +"'s review";
     }
 
 //This function allows the user to mouse hover the black and white star
@@ -70,13 +70,22 @@ function changeStarImage(num, classTarget) {
     }
 }
 
-function setBWStars(element){
-    var classname = element.getAttribute("class");
-    var stars = document.getElementsByClassName(classname);
+function addReview() {
+    var review = new Object();
+    review.accountId =  account[0]["account_id"];
+    review.restaurantId = restaurant_array[currentIndex]["restaurant_id"]; 
+    review.content = document.getElementById("userReview").value; // Value from HTML input text
+    review.datePosted = null; // Change the datePosted to null instead of taking the timestamp on the client side;
+    review.rating = rating;
 
-    // This is another way of writing 'for' loop, which initialises the 
-    // star images to use black and white.
-    for (let star of stars){
-        star.setAttribute("src", starBWImage);
-    }
+    var postReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
+
+    postReview.open("POST", review_url, true); //Use the HTTP POST method to send data to server
+
+    postReview.setRequestHeader("Content-Type", "application/json");
+    postReview.onload = function() {
+        fetchReviews(); // fetch all comments again so that the web page can have updated comments.     
+    };
+// Convert the data in review object to JSON format before sending to the server.
+    postReview.send(JSON.stringify(review)); 
 }

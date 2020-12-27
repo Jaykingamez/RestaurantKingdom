@@ -1,5 +1,6 @@
 function initialize(){
-    document.getElementById("welcomeUser").innerHTML = "Welcome " + localStorage.getItem("username");
+    username = localStorage.getItem("username")
+    document.getElementById("welcomeUser").innerHTML = "Welcome " + localStorage.getItem("username") ;
     fetchAccount();
     fetchRestaurants();
     fetchAmenityTable();
