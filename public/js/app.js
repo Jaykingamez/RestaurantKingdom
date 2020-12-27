@@ -4,6 +4,7 @@ currentIndex = null;
 
 var review_url = "/review";
 var review_array = []; //This creates an empty review array
+var rating = null;
 
 var account_url = "/profile";
 var username = null;

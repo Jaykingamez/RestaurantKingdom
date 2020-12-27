@@ -24,19 +24,28 @@ function newReview() {
 function rateIt(element) {
     var num = element.getAttribute("value");
     var classname = element.getAttribute("class");
-    var stars = document.getElementsByClassName(classname);
     var classTarget = "." + classname;
 
-    // This is another way of writing 'for' loop, which initialises the 
-    // popcorn images to use black and white.
-    for (let star of stars){
-        star.setAttribute("src", starBWImage);
-    }
     changeStarImage(num, classTarget);
 }
 
 function changeStarImage(num, classTarget) {
+    var stars = document.getElementsByClassName(classTarget.slice(1));
+
+    // This is another way of writing 'for' loop, which initialises the 
+    // star images to use black and white.
+    for (let star of stars){
+        star.setAttribute("src", starBWImage);
+    }
+
     switch (eval(num)) {
+        case 0:
+            document.querySelector(classTarget + "[value='1']").setAttribute("src", starBWImage);
+            document.querySelector(classTarget + "[value='2']").setAttribute("src", starBWImage);
+            document.querySelector(classTarget + "[value='3']").setAttribute("src", starBWImage);
+            document.querySelector(classTarget + "[value='4']").setAttribute("src", starBWImage);
+            document.querySelector(classTarget + "[value='5']").setAttribute("src", starBWImage);
+            break;
         case 1:
             document.querySelector(classTarget + "[value='1']").setAttribute("src", starImage);
             rating = 1;
@@ -89,3 +98,40 @@ function addReview() {
 // Convert the data in review object to JSON format before sending to the server.
     postReview.send(JSON.stringify(review)); 
 }
+
+function displayReview(){
+    var table = document.getElementById("reviewTable");
+    table.innerHTML = "";    
+    totalReviews = review_array.length; 
+    var restaurantId = restaurant_array[currentIndex]["restaurant_id"];   
+    for (var count = 0; count < totalReviews; count++) {
+        if (review_array[count]["restaurant_id"] === restaurantId){
+            var reviewerRating = review_array[count]["rating"];
+            var reviewerId = review_array[count]["account_id"];
+            var content = review_array[count]["content"];
+            var timestamp = review_array[count]["timestmap"];
+            var cell = '<div class="col-md-7" style="float: none; margin: 0 auto;">' +                          
+                        '<div >' + 
+                            '<img class="img-fluid" width="400" height="250" src=' + restaurantPicture + '/>';
+            for(var star = 0; star <= 5; star++){
+                if (star < reviewerRating){
+                    cell += '<img class="img-fluid" width="50" height="50" src=' + starImage + '/>';
+                } else{
+                    cell += '<img class="img-fluid" width="50" height="50" src=' + starBWImage + '/>';
+                }
+            }
+
+        fetchAccountId(reviewerId).then( (retrievedAccount) =>{
+            cell += '<span>' + retrievedAccount["user_id"] + '</span>';
+            cell += '<span>' + timestamp + + '</span>';
+            cell += '<p>' + content + '</p>';
+            cell += '</div>';
+        })
+            
+            
+        }
+    
+    }           
+}
+
+

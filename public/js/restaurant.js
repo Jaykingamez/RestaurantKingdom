@@ -81,6 +81,9 @@ function displayRestaurantDetails(element){
     document.getElementById("opening-time").textContent = restaurant_array[item]["opening_time"];
     document.getElementById("closing-time").textContent = restaurant_array[item]["closing_time"];
     document.getElementById("telephone-number").textContent = restaurant_array[item]["telephone_number"];
+    var restaurantRating = fetchRestaurantRating(restaurant_array[currentIndex]["restaurant_id"]);
+    console.log(restaurantRating);
+    changeStarImage(restaurantRating, ".restaurantStar");
     addOnTags(restaurant_array[item]["restaurant_id"], "").then( (returned_html) => {
         document.getElementById("tag-row").innerHTML = returned_html;
      });
@@ -105,4 +108,17 @@ function addOnTags(restaurantId, cell){
             resolve(cell);
         }).catch((error) => { console.log(error);});
     });
+}
+
+function fetchRestaurantRating(restaurantID){
+    var rating = 0;
+    var number_of_reviews = 0;
+    for (var i = 0; i < review_array.length; i++){
+        if(review_array[i]["restaurant_id"] == restaurantID){
+            rating += review_array[i]["rating"];
+            number_of_reviews += 1;
+        }
+    }
+
+    return Math.floor(rating/number_of_reviews);
 }

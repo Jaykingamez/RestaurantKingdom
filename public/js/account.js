@@ -1,3 +1,5 @@
+const { version } = require("typescript");
+
 var response = "";
 function login(){
     var credentials = new Object();
@@ -37,7 +39,7 @@ function register(){
     request.send(formData);
 }
 
-function fetchAccount(){
+function fetchAccountUsername(){
     var request = new XMLHttpRequest();
 
     request.open('GET', account_url + "/" + username, true);
@@ -49,6 +51,23 @@ function fetchAccount(){
     };
 
     request.send();
+}
+
+function fetchAccountId(accountId){
+    return new Promise( (resolve, reject) =>{
+        var request = new XMLHttpRequest();
+
+        request.open('GET', account_url + "/" + accountId, true);
+
+        //This command starts the calling of the accounts api
+        request.onload = function() {
+        //return this when request is returned
+        resolve(JSON.parse(request.responseText));
+        };
+
+        request.send();
+    });
+    
 }
 
 
