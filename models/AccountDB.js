@@ -4,6 +4,7 @@ var fs = require('fs');
 var formidable = require('formidable');
 var db = require('../db-connection');
 const Account = require('./Account');
+const { Console } = require('console');
 const folderLocation = '/public/images/profile_photo/';
 
 class AccountDB{
@@ -131,8 +132,16 @@ class AccountDB{
     }
 
     getAccountData(request, respond){
-        var accountID = request.params.username;
-        var sql = "SELECT * FROM restaurant_review.account where user_id = ?";
+        if ( isNaN(request.params.username) ){
+            //console.log(request.params.username);
+            //console.log("Here! Userrname")
+            var accountID = request.params.username;
+            var sql = "SELECT * FROM restaurant_review.account where user_id = ?";
+        } else{
+            //console.log("Using account id");
+            var accountID = request.params.username;
+            var sql = "SELECT * FROM restaurant_review.account where account_id = ?";
+        }   
         db.query(sql, accountID, function(error, result){
             if (error) { 
                 throw error; 

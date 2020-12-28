@@ -144,3 +144,7 @@ tr.table_row_border, td{
     padding: 5px;
 }
 
+.text-right{
+    float: right;
+}
+

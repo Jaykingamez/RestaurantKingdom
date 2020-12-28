@@ -1,5 +1,3 @@
-const { version } = require("typescript");
-
 var response = "";
 function login(){
     var credentials = new Object();

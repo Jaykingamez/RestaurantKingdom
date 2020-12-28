@@ -99,39 +99,53 @@ function addReview() {
     postReview.send(JSON.stringify(review)); 
 }
 
-function displayReview(){
+function displayOtherReviews(){
     var table = document.getElementById("reviewTable");
+    document.getElementById("other-review").innerText = restaurant_array[currentIndex]["restaurant_name"];
     table.innerHTML = "";    
-    totalReviews = review_array.length; 
+    totalReviews = review_array.length;
+    var iterations = 0; 
     var restaurantId = restaurant_array[currentIndex]["restaurant_id"];   
     for (var count = 0; count < totalReviews; count++) {
         if (review_array[count]["restaurant_id"] === restaurantId){
+            iterations += 1;
             var reviewerRating = review_array[count]["rating"];
             var reviewerId = review_array[count]["account_id"];
+            var reviewerProfilePhoto = review_array[count]["profile_photo"];
             var content = review_array[count]["content"];
-            var timestamp = review_array[count]["timestmap"];
-            var cell = '<div class="col-md-7" style="float: none; margin: 0 auto;">' +                          
-                        '<div >' + 
-                            '<img class="img-fluid" width="400" height="250" src=' + restaurantPicture + '/>';
-            for(var star = 0; star <= 5; star++){
+            console.log(content);
+
+            //all this content get's iterated through to the last, that's why it repeats the last element continously
+            var timestamp = review_array[count]["timestamp"];
+            var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +                          
+                        '<div>' + 
+                            '<img class="img-fluid" width="50" height="50" src=' + reviewerProfilePhoto + '/>';
+            for(var star = 0; star < 5; star++){
                 if (star < reviewerRating){
                     cell += '<img class="img-fluid" width="50" height="50" src=' + starImage + '/>';
                 } else{
                     cell += '<img class="img-fluid" width="50" height="50" src=' + starBWImage + '/>';
                 }
+                
             }
 
-        fetchAccountId(reviewerId).then( (retrievedAccount) =>{
-            cell += '<span>' + retrievedAccount["user_id"] + '</span>';
-            cell += '<span>' + timestamp + + '</span>';
-            cell += '<p>' + content + '</p>';
-            cell += '</div>';
-        })
+            fetchAndAddCell(reviewerId,timestamp, content, cell, table)
+
             
-            
-        }
-    
-    }           
+    }
+    console.log(iterations);           
+}
+
+function fetchAndAddCell(reviewerId, timestamp, content, cell, table){
+    fetchAccountId(reviewerId).then( (retrievedAccount) =>{
+        cell += '<span class="align-top">' + retrievedAccount[0]["user_id"] + '</span>';
+        cell += '<span class="text-right">' + timestamp + '</span>';
+        cell += '</div>';
+        cell += '<p>' + content + '</p>';
+        cell += '</div>';
+        table.insertAdjacentHTML('beforeend', cell); 
+    });  
+}
 }
 
 

@@ -10,8 +10,8 @@ function routeAccount(app){
     app.route('/register')
         .post(accountDBObject.addNewAccount);
     app.route('/profile/:username')
-        .get(accountDBObject.getAccountData)
-    app.route('/profiel/:id')
+        .get(accountDBObject.getAccountData);
+    app.route('/profile/:id')
         .put(accountDBObject.updateAccount)
         .delete(accountDBObject.deleteAccount);
 }
