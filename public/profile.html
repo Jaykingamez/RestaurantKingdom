@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="public/css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="/js/account.js"></script>
+        <script src="/js/pageInitialization.js"></script>
     </head>
-    <body>
+    <body onload="initializeProfile()">
         <header>
-            <h1 class="centered">Profile</h1>
+            <h1 id="profile-name" class="centered">Profile</h1>
         </header>
         <main>
-            <form class="width100" method="post">
+            <form id="edit-profile-form" class="width100" enctype="multipart/form-data" onsubmit="return false;">
                 <div class="flex">  
-                    <img src="https://i.pinimg.com/originals/9d/20/a9/9d20a9d0347f9e68c2fca7b816222ca6.jpg" 
-                        width="300" height="300" alt="Cute anime girl">
+                    <img src="/images/restaurantKingdom.png" 
+                        id="edit_profile_photo" width="300" height="300">
                     <div class="width100 space-between">
                         <div class="row">
                             <div class="column small-margin">
-                                <label for="register-username">Username:</label>
-                                <input type="text" id="register-username" name="register-username" required>
+                                <label for="profile-username">Username:</label>
+                                <input type="text" id="profile-username" name="profile-username" required>
                             </div>
 
                             <div class="column small-margin">
-                                <label for="register-password">Password:</label>
-                                <input type="text" id="register-password" name="register-password" required>
+                                <label for="profile-password">Password:</label>
+                                <input type="text" id="profile-password" name="profile-password" required>
                             </div>
                         </div>
                         
                         
                         <div class="row">
                             <div class="column small-margin">
-                                <label for="register-first-name">First name:</label>
-                                <input type="text" id="register-first-name" name="register-first-name">
+                                <label for="profile-first-name">First name:</label>
+                                <input type="text" id="profile-first-name" name="profile-first-name">
                             </div>
                             
                             <div class="column small-margin">
-                                <label for="register-last-name">Last name:</label>
-                                <input type="text" id="register-last-name" name="register-last-name">
+                                <label for="profile-last-name">Last name:</label>
+                                <input type="text" id="profile-last-name" name="profile-last-name">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="column small-margin">
-                                <label for="register-gender">Gender:</label>
-                                <input type="text" id="register-gender" name="register-gender">
+                                <label for="profile-gender">Gender:</label>
+                                <input type="text" id="profile-gender" name="profile-gender">
                             </div>
                             
                             <div class="column small-margin">
-                                <label for="register-address">Address:</label>
-                                <input type="text" id="register-address" name="register-address">
+                                <label for="profile-address">Address:</label>
+                                <input type="text" id="profile-address" name="profile-address">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="column small-margin">
-                                <label for="register-mobile">Mobile Number:</label>
-                                <input type="text" id="register-mobile" name="register-mobile">
+                                <label for="profile-mobile">Mobile Number:</label>
+                                <input type="text" id="profile-mobile" name="profile-mobile">
                             </div>
                             
                             <div class="column small-margin">
-                                <label for="register-email">Email:</label>
-                                <input type="email" id="register-email" name="register-email" required>
+                                <label for="profile-email">Email:</label>
+                                <input type="email" id="profile-email" name="profile-email" required>
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
-
-                <div id="upload_img_div">
-                    <label for="upload_img">Upload your profile photo:</label>
-                    <input type="file" id="upload_img" name="upload_img" accept="image/*">
+                
+                <div class="img_div">
+                    <label for="edit_upload_img">Upload your profile photo:</label>
+                    <input type="file" id="edit_upload_img" name="edit_upload_img" accept="image/*" onchange="displayImage(event)">
                 </div>
+                
 
                 <div class="centered">
-                    <button type="submit">
-                        Create my new account!
+                    <button type="submit" value="submit" onclick="editProfile()">
+                        Edit my profile!
                     </button>
                 </div>
                 

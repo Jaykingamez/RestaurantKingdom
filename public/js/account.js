@@ -37,6 +37,21 @@ function register(){
     request.send(formData);
 }
 
+function editProfile(){
+    var formElement = document.getElementById("edit-profile-form");
+    var formData = new FormData(formElement);
+    var request = new XMLHttpRequest();
+    request.open("POST", "/register" + account[0]["account_id"], true);
+    //request.setRequestHeader("Content-Type", "multipart/form-data");
+    request.onload = function(){
+        response = JSON.parse(request.responseText);
+        if (repsonse = "done!"){
+            window.location.href = "home.html";
+        }
+    };
+    request.send(formData);
+}
+
 function fetchAccountUsername(){
     var request = new XMLHttpRequest();
 
@@ -48,6 +63,7 @@ function fetchAccountUsername(){
     account = JSON.parse(request.responseText);
     document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
     document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
+    localStorage.setItem("account", request.responseText);
     };
 
     request.send();

@@ -4,6 +4,7 @@ var fs = require('fs');
 var formidable = require('formidable');
 var db = require('../db-connection');
 const Account = require('./Account');
+const { profile } = require('console');
 const folderLocation = '/images/profile_photo/';
 
 class AccountDB{
@@ -95,7 +96,7 @@ class AccountDB{
             if (filename == null){
                 var pfpPath  = "/images/restaurantKingdom.png";
             }else{
-                var pfpPath =folderLocation + filename;
+                var pfpPath = folderLocation + filename;
             }
             var accountObject = new Account(null, fields["register-username"], fields["register-password"], fields["register-first-name"],
             fields["register-last-name"], fields["register-gender"], fields["register-address"], fields["register-mobile"], 
@@ -156,21 +157,47 @@ class AccountDB{
     }
 
     updateAccount(request, respond){
-        var accountObject = new Account(request.params.id, rquest.body.username, request.body.password, request.body.firstName,
-            request.body.lastName, request.body.gender, request.body.address, request.body.mobile, 
-            request.body.email, request.body.uploadImg);
-            var sql = `UPDATE restaurant_review.account SET user_id = ?, password = ?, first_name = ?, last_name = ?, gender = ?,
-            address = ?, mobile_number = ?, email_address = ?, profile_photo = ? WHERE account_id = ?"`;
-            var values = [accountObject.getUserId(), accountObject.getPassword(), accountObject.getFirstName(),
-                accountObject.getLastName(), accountObject.getGender(), accountObject.getAddress(), accountObject.getMobileNumber(),
-                accountObject.getEmailAddress(), accountObject.getProfilePhoto(), accountObject.getAccountId()];
-            db.query(sql, values, function(error, result){
-                if (error) { 
-                    throw error; 
-                }
-                else { 
-                    respond.json(result); }
+        var form = new formidable.IncomingForm();
+        form.parse(request, function (error, fields, files){
+            if(error) respond.json(error);
+            AccountDB.checkFile(files).then( (filename) => {
+                return AccountDB.addAccountDatabase(fields, filename);
+            }).then((filename) => {
+                console.log("Checking filename is"+ filename);
+                AccountDB.uploadProfilePhoto(files, filename);
+                respond.json("done"); 
+            }).catch((error) => { console.log(error);});
+        }); 
+    }
+
+    updateAccountDatabase(fields, filename){
+        return new Promise((resolve, reject) => {
+            var accountObject = new Account(null ,fields["profile-username"], fields["profile-password"], fields["profile-first-name"], fields["profile-last-name"],
+                fields["profile-gender"], fields["profile-address"], fields["profile-email"], filename);
+                if (filename == null){
+                    var sql = `UPDATE restaurant_review.account SET user_id = ?, password = ?, first_name = ?, last_name = ?, gender = ?,
+                    address = ?, mobile_number = ?, email_address = ? WHERE account_id = ?"`;
+                    var values = [accountObject.getUserId(), accountObject.getPassword(), accountObject.getFirstName(),
+                        accountObject.getLastName(), accountObject.getGender(), accountObject.getAddress(), accountObject.getMobileNumber(),
+                        accountObject.getEmailAddress(), accountObject.getAccountId()];
+                } else{
+                    var sql = `UPDATE restaurant_review.account SET user_id = ?, password = ?, first_name = ?, last_name = ?, gender = ?,
+                    address = ?, mobile_number = ?, email_address = ?, profile_photo = ? WHERE account_id = ?"`;
+                    var values = [accountObject.getUserId(), accountObject.getPassword(), accountObject.getFirstName(),
+                        accountObject.getLastName(), accountObject.getGender(), accountObject.getAddress(), accountObject.getMobileNumber(),
+                        accountObject.getEmailAddress(), accountObject.getProfilePhoto(), accountObject.getAccountId()];
+                }                
+                db.query(sql, values, function(error, result){
+                    if (error) { 
+                        throw error; 
+                    }
+                    else { 
+                        respond.json(result); 
+                        reoslve(filename);
+                    }
                 });
+        });
+        
     }
 
     deleteAccount(request, respond){
