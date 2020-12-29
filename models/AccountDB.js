@@ -4,8 +4,7 @@ var fs = require('fs');
 var formidable = require('formidable');
 var db = require('../db-connection');
 const Account = require('./Account');
-const { Console } = require('console');
-const folderLocation = '/public/images/profile_photo/';
+const folderLocation = '/images/profile_photo/';
 
 class AccountDB{
     getLoginCredentials(request, respond){
@@ -93,9 +92,14 @@ class AccountDB{
      static addAccountDatabase(fields, filename){
         //console.log("folderLocation + Filename is " +  folderLocation + filename);
         return new Promise((resolve, reject) =>{
+            if (filename == null){
+                var pfpPath  = "/images/restaurantKingdom.png";
+            }else{
+                var pfpPath =folderLocation + filename;
+            }
             var accountObject = new Account(null, fields["register-username"], fields["register-password"], fields["register-first-name"],
             fields["register-last-name"], fields["register-gender"], fields["register-address"], fields["register-mobile"], 
-            fields["register-email"], folderLocation + filename);
+            fields["register-email"], pfpPath);
 
             var sql = `INSERT INTO restaurant_review.account (user_id, password, first_name,  last_name, gender, address,
                 mobile_number, email_address, profile_photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -118,7 +122,7 @@ class AccountDB{
             if (files.upload_img){
                 var file = files.upload_img;
                 var oldPath = file.path;
-                var newPath = process.cwd() + folderLocation + filename;
+                var newPath = process.cwd() + '/public' + folderLocation + filename;
                 console.log(filename);
                 console.log(newPath);
                 fs.rename(oldPath,  newPath, (error) => {

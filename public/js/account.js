@@ -46,6 +46,8 @@ function fetchAccountUsername(){
     request.onload = function() {
     //get all the account information into our account variable
     account = JSON.parse(request.responseText);
+    document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
+    document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
     };
 
     request.send();

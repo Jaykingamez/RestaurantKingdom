@@ -111,15 +111,25 @@ function displayOtherReviews(){
             iterations += 1;
             var reviewerRating = review_array[count]["rating"];
             var reviewerId = review_array[count]["account_id"];
-            var reviewerProfilePhoto = review_array[count]["profile_photo"];
             var content = review_array[count]["content"];
             console.log(content);
 
             //all this content get's iterated through to the last, that's why it repeats the last element continously
             var timestamp = review_array[count]["timestamp"];
-            var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +                          
+            
+
+            fetchAndAddCell(reviewerId,timestamp, content, table);
+
+            
+    }
+    console.log(iterations);           
+}
+
+function fetchAndAddCell(reviewerId, timestamp, content, table){
+    fetchAccountId(reviewerId).then( (retrievedAccount) =>{
+        var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +                          
                         '<div>' + 
-                            '<img class="img-fluid" width="50" height="50" src=' + reviewerProfilePhoto + '/>';
+                            '<img class="img-fluid" width="50" height="50" src=' + retrievedAccount[0]["profile_photo"] + '>';
             for(var star = 0; star < 5; star++){
                 if (star < reviewerRating){
                     cell += '<img class="img-fluid" width="50" height="50" src=' + starImage + '/>';
@@ -128,16 +138,6 @@ function displayOtherReviews(){
                 }
                 
             }
-
-            fetchAndAddCell(reviewerId,timestamp, content, cell, table)
-
-            
-    }
-    console.log(iterations);           
-}
-
-function fetchAndAddCell(reviewerId, timestamp, content, cell, table){
-    fetchAccountId(reviewerId).then( (retrievedAccount) =>{
         cell += '<span class="align-top">' + retrievedAccount[0]["user_id"] + '</span>';
         cell += '<span class="text-right">' + timestamp + '</span>';
         cell += '</div>';
