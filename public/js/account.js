@@ -9,7 +9,7 @@ function login(){
     request.setRequestHeader("Content-Type", "application/json");
     request.onload = function(){
         response = JSON.parse(request.responseText);
-        if (response = "SUCCESS!"){
+        if (response == "SUCCESS!"){
             window.location.href = "home.html";
         }
         //document.getElementById("loginForm").style.display="none";
@@ -18,7 +18,11 @@ function login(){
     request.send(JSON.stringify(credentials)); 
 }
 function displayImage(event){
-    var image = document.getElementById('register_profile_photo');
+    if (document.getElementById('register_profile_photo') == null){
+        var image = document.getElementById('edit_profile_photo');
+    } else{
+        var image = document.getElementById('register_profile_photo');
+    }
     image.src = URL.createObjectURL(event.target.files[0]);
 }
 
@@ -41,11 +45,13 @@ function editProfile(){
     var formElement = document.getElementById("edit-profile-form");
     var formData = new FormData(formElement);
     var request = new XMLHttpRequest();
-    request.open("POST", "/register" + account[0]["account_id"], true);
+    request.open("PUT", "/profile/" + account[0]["account_id"], true);
     //request.setRequestHeader("Content-Type", "multipart/form-data");
     request.onload = function(){
         response = JSON.parse(request.responseText);
         if (repsonse = "done!"){
+            username = formData.get("profile-username");
+            localStorage.setItem("username", username);
             window.location.href = "home.html";
         }
     };
