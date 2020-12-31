@@ -122,3 +122,11 @@ function fetchRestaurantRating(restaurantID){
 
     return Math.floor(rating/number_of_reviews);
 }
+
+function EnterTags(event){
+    if(event.key == "Enter"){
+        document.getElementById("TagStorage").innerHTML += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags">' + document.getElementById("filters").value + '</span>';
+        //document.getElementById("filters").innerText = "";
+    }
+
+}

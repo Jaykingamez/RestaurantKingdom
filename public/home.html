@@ -33,13 +33,16 @@
         <nav>
             <div class="arbitrary-width auto-margin">
                 <input class="searchbox" name="homesearch" type="search" size="100" placeholder="Type out the restaurant's name :)">
-                <label for="filters">Filter: </label>
-                <input type="search" id="filters" placeholder="Filter?">
+                <div>
+                    <label for="filters">Filter: </label>
+                    <input id="filters" placeholder="Filter?" onkeypress="EnterTags(event)">
+                    <div id="TagStorage"></div>
+                </div>
             </div>
         </nav>
         <main>
             <!-- Displays thumbnails of the movies here -->
-            <div id="restaurantsTable" class="row"></div>
+            <div id="restaurantsTable" class="row marginTop10"></div>
             <div w3-include-html="restaurant-modal.html"></div>
             <div w3-include-html="new-review-modal.html"></div>
             <div w3-include-html="other-review-modal.html"></div>
