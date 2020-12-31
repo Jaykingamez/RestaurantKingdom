@@ -30,9 +30,12 @@
                      id="edit-profile-information"` width="150" height="150" alt="Cute anime girl" ">
             </a>
         </header>
-        <nav>
-            <div class="arbitrary-width auto-margin">
-                <input class="searchbox" name="homesearch" type="search" size="100" placeholder="Type out the restaurant's name :)">
+        <nav class="auto-margin arbitrary-width">
+            <div>
+                <div>
+                    <input id="searchbox" name="homesearch" type="search" size="80" placeholder="Type out the restaurant's name :)">
+                    <button onclick="">Search</button>
+                </div>
                 <div>
                     <label for="filters">Filter: </label>
                     <input id="filters" placeholder="Filter?" onkeypress="EnterTags(event)">

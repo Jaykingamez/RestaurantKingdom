@@ -63,7 +63,7 @@ body{
     width: 50%;
 }
 
-.searchbox{
+#searchbox{
     display: inline-block;
     padding: 20px;
 }

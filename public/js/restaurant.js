@@ -1,3 +1,5 @@
+const e = require("express");
+
 function fetchRestaurants(){
     var request = new XMLHttpRequest();
 
@@ -125,8 +127,25 @@ function fetchRestaurantRating(restaurantID){
 
 function EnterTags(event){
     if(event.key == "Enter"){
-        document.getElementById("TagStorage").innerHTML += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags">' + document.getElementById("filters").value + '</span>';
+        document.getElementById("TagStorage").innerHTML += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags search_tags">' + document.getElementById("filters").value + '</span>';
         //document.getElementById("filters").innerText = "";
     }
+}
 
+function SearchRestaurant(){
+    var eligible_tags = checkTags();
+    var query = document.getElementById("searchbox").value;
+
+}
+
+function checkTags(){
+    var eligible_tags = [];
+    var filters = document.querySelectorAll('span.search_tags');
+    for( var i = 0; i < filters.length ; i++){
+        if (Object.values(amenity_table).includes(filters[i].innerText) || Object.values(cuisine_table).includes(filters[i].innerText) ){
+            eligible_tags.push(filters[i].innerText);
+        }
+    }
+
+    return eligible_tags;
 }
