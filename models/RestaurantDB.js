@@ -48,14 +48,17 @@ class RestaurantDB{
     searchRestaurant(request, respond){
         var query = '%' + request.body.search + '%';
         var tags = request.body.tags;
+        console.log(request.body);
+        console.log(query);
+        console.log(tags);
         var values = [query];
-        var sql = `SELECT restaurant.restaurant_id
+        var sql = `SELECT *
                    FROM restaurant
                    LEFT OUTER JOIN restaurant_amenity ON restaurant.restaurant_id = restaurant_amenity.restaurant_id
                    LEFT OUTER JOIN amenity ON restaurant_amenity.amenity_id = amenity.amenity_id
                    LEFT OUTER JOIN restaurant_cuisine ON restaurant.restaurant_id = restaurant_cuisine.restaurant_id
                    LEFT OUTER JOIN cuisine ON restaurant_cuisine.cuisine_id = cuisine.cuisine_id
-                   WHERE restaurant_name LIKE ?`
+                   WHERE restaurant_name LIKE ?`;
         
         for (const [key, value] of Object.entries(tags)) {
             sql += " AND " + key + " = ?";
@@ -63,8 +66,8 @@ class RestaurantDB{
         }
         console.log(values);
         //dont forget group by
-        sql += " GROUP BY restaurant_id";
-        console.log(sql);
+        sql += " GROUP BY restaurant.restaurant_id";
+        //console.log(sql);
 
         db.query(sql, values, function(error, result){
             if(error){

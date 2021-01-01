@@ -12,6 +12,6 @@ function routeRestaurant(app){
     app.route("/restaurant/cuisine/:id")
         .get(restaurantDBObject.getRestaurantCuisine);
     app.route("/search")
-        .get(restaurantDBObject.searchRestaurant);
+        .post(restaurantDBObject.searchRestaurant);
 }
 module.exports = {routeRestaurant}

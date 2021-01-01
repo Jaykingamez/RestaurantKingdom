@@ -1,5 +1,3 @@
-const e = require("express");
-
 function fetchRestaurants(){
     var request = new XMLHttpRequest();
 
@@ -23,8 +21,8 @@ function fetchRestaurantAmenity(restaurantID){
     
         //This command starts the calling of the restaurant amenity api
         request.onload = function() {
-           restaurant_amenity = JSON.parse(request.responseText);
-        resolve();
+            restaurant_amenity = JSON.parse(request.responseText);
+            resolve();
         };
     
         request.send();
@@ -125,25 +123,43 @@ function fetchRestaurantRating(restaurantID){
     return Math.floor(rating/number_of_reviews);
 }
 
-function EnterTags(event){
+function enterTags(event){
     if(event.key == "Enter"){
         document.getElementById("TagStorage").innerHTML += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags search_tags">' + document.getElementById("filters").value + '</span>';
         //document.getElementById("filters").innerText = "";
     }
 }
 
-function SearchRestaurant(){
+function searchRestaurant(){
+    var search = new Object();
     var eligible_tags = checkTags();
     var query = document.getElementById("searchbox").value;
+    search.search = query;
+    search.tags = eligible_tags;
 
+    var getSearch = new XMLHttpRequest(); // new HttpRequest instance to send search query
+
+    getSearch.open("POST", search_url, true); //Use the HTTP get method to request data to server
+
+    getSearch.setRequestHeader("Content-Type", "application/json");
+    getSearch.onload = function() {
+        //console.log(getSearch.responseText);
+        restaurant_array = JSON.parse(getSearch.responseText);
+        displayRestaurants();
+    };
+    console.log(search);
+    getSearch.send(JSON.stringify(search)); 
 }
 
 function checkTags(){
-    var eligible_tags = [];
+    var eligible_tags = {};
     var filters = document.querySelectorAll('span.search_tags');
     for( var i = 0; i < filters.length ; i++){
-        if (Object.values(amenity_table).includes(filters[i].innerText) || Object.values(cuisine_table).includes(filters[i].innerText) ){
-            eligible_tags.push(filters[i].innerText);
+        console.log(filters[i].innerText);
+        if (Object.values(amenity_table).includes(filters[i].innerText)){
+            eligible_tags["amenity"] = filters[i].innerText;
+        } else if(Object.values(cuisine_table).includes(filters[i].innerText)){
+            eligible_tags["cuisine"] = filters[i].innerText;
         }
     }
 
