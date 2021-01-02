@@ -52,7 +52,7 @@ class RestaurantDB{
         console.log(query);
         console.log(tags);
         var values = [query];
-        var sql = `SELECT *
+        var sql = `SELECT restaurant.restaurant_id, restaurant.restaurant_name, restaurant.restaurant_picture, restaurant.address, restaurant.opening_time, restaurant.closing_time, restaurant.telephone_number
                    FROM restaurant
                    LEFT OUTER JOIN restaurant_amenity ON restaurant.restaurant_id = restaurant_amenity.restaurant_id
                    LEFT OUTER JOIN amenity ON restaurant_amenity.amenity_id = amenity.amenity_id
@@ -74,6 +74,7 @@ class RestaurantDB{
                 throw error;
             }
             else{
+                console.log(result);
                 respond.json(result);
             }
         });
