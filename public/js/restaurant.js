@@ -143,7 +143,6 @@ function searchRestaurant(){
 
     getSearch.setRequestHeader("Content-Type", "application/json");
     getSearch.onload = function() {
-        console.log(getSearch.responseText);
         restaurant_array = JSON.parse(getSearch.responseText);
         displayRestaurants();
     };

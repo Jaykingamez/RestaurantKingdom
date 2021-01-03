@@ -92,4 +92,56 @@ function fetchAccountId(accountId){
     
 }
 
+function destroyAccountConfirm(){
+    document.getElementById("profile-name").innerText = "Destroy account?";
+    document.getElementById("profileMain").innerHTML = 
+    `<p class="centered">
+        Are you sure that you want to destroy your account? Such actions cannot be reversed.
+    </p>
+
+    <div class="centered">
+        <button onclick="reloadPage()">
+            Return
+        </button>
+        <button onclick="destroyAccount()">
+            Destroy my account x)
+        </button>
+    </div>`
+}
+
+function destroyAccount(){
+
+    var request = new XMLHttpRequest();
+    request.open("DELETE", "/profile/" + JSON.parse(localStorage.getItem("account"))[0]["account_id"] , true);
+
+    //This command starts the calling of the accounts api
+    request.onload = function() {
+        //return this when request is returned
+        document.getElementById("profileMain").innerHTML = 
+        `<p class="centered">
+            Your account has been destroyed. To continue to 
+            use the services of this site, you will need to create a
+            new account.
+        </p>
+
+        <div class="centered">
+            <button onclick="goToLogin()">
+                Return to login page
+            </button>
+        </div>`
+    };
+
+    request.send();
+    
+
+
+
+
+
+}
+
+
+
+    
+
 

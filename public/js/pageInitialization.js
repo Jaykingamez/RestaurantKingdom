@@ -23,6 +23,14 @@ function initializeProfile(){
     document.getElementById("profile-email").value = account[0]["email_address"];
 }
 
+function reloadPage(){
+    location.reload();
+}
+
+function goToLogin(){
+    window.location.href = "index.html";
+}
+
 
 
 

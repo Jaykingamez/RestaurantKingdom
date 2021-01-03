@@ -9,7 +9,7 @@
         <header>
             <h1 id="profile-name" class="centered">Profile</h1>
         </header>
-        <main>
+        <main id="profileMain">
             <form id="edit-profile-form" class="width100" enctype="multipart/form-data" onsubmit="return false;">
                 <div class="flex">  
                     <img src="/images/restaurantKingdom.png" 
@@ -76,12 +76,12 @@
                     <button type="submit" value="submit" onclick="editProfile()">
                         Edit my profile!
                     </button>
+                    <button onclick="destroyAccountConfirm()">
+                        Destroy my account x)
+                    </button>
                 </div>
                 
             </form>
-
-            
-            
         </main>
     </body>
-</html>
+ 
