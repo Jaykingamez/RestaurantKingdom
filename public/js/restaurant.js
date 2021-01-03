@@ -59,7 +59,7 @@ function displayRestaurants(){
         var cell = '<div class="col-md-3" style="float: none; margin: 0 auto;">' +                          
                         '<div >' + 
                             '<a id="restaurants" href="#restaurantModal" data-toggle="modal" data-target="#restaurantModal" item=' + count + '>'+
-                                '<img class="img-fluid" width="400" height="250" src=' + restaurantPicture + ' item=' + count + ' onclick="displayRestaurantDetails(this)" />'+
+                                '<img class="img-fluid img-thumbnail" src=' + restaurantPicture + ' item=' + count + ' onclick="displayRestaurantDetails(this)" />'+
                             '</a>'+
                         '</div>' +
                         '<h3 class="centered">' + restaurantName + '</h3>';
