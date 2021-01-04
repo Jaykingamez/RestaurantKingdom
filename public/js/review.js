@@ -118,14 +118,14 @@ function displayOtherReviews(){
             var timestamp = review_array[count]["timestamp"];
             
 
-            fetchAndAddCell(reviewerId,timestamp, content, table);
+            fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table);
 
             
     }
     console.log(iterations);           
 }
 
-function fetchAndAddCell(reviewerId, timestamp, content, table){
+function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table){
     fetchAccountId(reviewerId).then( (retrievedAccount) =>{
         var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +                          
                         '<div>' + 
