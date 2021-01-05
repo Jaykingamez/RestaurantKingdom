@@ -85,9 +85,24 @@ function displayRestaurantDetails(element){
     document.getElementById("opening-time").textContent = restaurant_array[item]["opening_time"];
     document.getElementById("closing-time").textContent = restaurant_array[item]["closing_time"];
     document.getElementById("telephone-number").textContent = restaurant_array[item]["telephone_number"];
+    
     var restaurantRating = fetchRestaurantRating(restaurant_array[currentIndex]["restaurant_id"]);
     console.log(restaurantRating);
     changeStarImage(restaurantRating, ".restaurantStar");
+    console.log(restaurant_array[item]["restaurant_id"]);
+    console.log(account[0]["account_id"]);
+    fetchCertainRestaurantReview(restaurant_array[item]["restaurant_id"] , account[0]["account_id"]).then( (returned_review) => {
+        if (returned_review.length > 0){
+            localStorage.setItem("review", returned_review);
+            document.getElementById("writeOrEdit").textContent = "Edit your review";
+            document.getElementById("writeOrEdit").setAttribute('onclick','getOldReview()')
+            document.getElementById("submitReview").setAttribute('onclick','updateReview()')
+        }else{
+            document.getElementById("writeOrEdit").textContent = "Write a review";
+            document.getElementById("writeOrEdit").setAttribute('onclick','newReview()');
+            document.getElementById("submitReview").setAttribute('onclick','addReview()');
+        }
+    });
     addOnTags(restaurant_array[item]["restaurant_id"], "").then( (returned_html) => {
         document.getElementById("tag-row").innerHTML = returned_html;
      });

@@ -64,5 +64,20 @@ class ReviewDB{
             }
         });
     }
+
+    getCertainRestaurantReview(request, respond){
+        var sql = "SELECT * FROM restaurant_review.review WHERE restaurant_id = ? and account_id = ?";
+        var values = [request.body.restaurantId, request.body.accountId];
+
+        db.query(sql, values, function (error, result){
+            if(error){
+                throw error;
+            }
+            else{
+                console.log(result);
+                respond.json(result);
+            }
+        });
+    }
 }
 module.exports = ReviewDB;

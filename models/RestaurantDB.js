@@ -48,7 +48,6 @@ class RestaurantDB{
     searchRestaurant(request, respond){
         var query = '%' + request.body.search + '%';
         var tags = request.body.tags;
-        console.log(request.body);
         console.log(query);
         console.log(tags);
         var values = [query];
@@ -74,7 +73,7 @@ class RestaurantDB{
                 throw error;
             }
             else{
-                console.log(result);
+                //console.log(result);
                 respond.json(result);
             }
         });

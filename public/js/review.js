@@ -93,7 +93,7 @@ function addReview() {
 
     postReview.setRequestHeader("Content-Type", "application/json");
     postReview.onload = function() {
-        fetchReviews(); // fetch all comments again so that the web page can have updated comments. 
+        fetchReviews(); // fetch all reviews again so that the web page can have updated reviews. 
         displayRestaurantDetails(restaurant_array[currentIndex]["restaurant_id"]);   
     };
 // Convert the data in review object to JSON format before sending to the server.
@@ -108,7 +108,7 @@ function displayOtherReviews(){
     var iterations = 0; 
     var restaurantId = restaurant_array[currentIndex]["restaurant_id"];   
     for (var count = 0; count < totalReviews; count++) {
-        if (review_array[count]["restaurant_id"] === restaurantId){
+        if (review_array[count]["restaurant_id"] === restaurantId && review_array[count]["account_id"] != account[0]["account_id"]) {
             iterations += 1;
             var reviewerRating = review_array[count]["rating"];
             var reviewerId = review_array[count]["account_id"];
@@ -120,8 +120,7 @@ function displayOtherReviews(){
             
 
             fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table);
-
-            
+        }
     }
     console.log(iterations);           
 }
@@ -147,6 +146,56 @@ function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table){
         table.insertAdjacentHTML('beforeend', cell); 
     });  
 }
+
+function fetchCertainRestaurantReview(restaurantId, accountId){
+    return new Promise( (resolve, reject) => {
+        var details = new Object();
+        details.restaurantId = restaurantId;
+        details.accountId = accountId;
+
+        var getReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
+
+        getReview.open("POST", review_url + restaurant_url, true); //Use the HTTP POST method to send data to server
+
+        getReview.setRequestHeader("Content-Type", "application/json");
+        getReview.onload = function() {
+            resolve(getReview.responseText)
+        };
+
+        getReview.send(JSON.stringify(details)); 
+    });
 }
+
+function getOldReview(){
+    var review =  JSON.parse(localStorage.getItem("review"))[0];
+    rating = review["rating"];
+    document.getElementById("userReview").value = review["content"];
+    document.getElementById("creator-review").innerText = "Edit " + username +"'s review";
+    changeStarImage(rating, ".star");
+}
+
+function updateReview(){
+    var review = new Object();
+    review.accountId =  account[0]["account_id"];
+    review.restaurantId = restaurant_array[currentIndex]["restaurant_id"]; 
+    review.content = document.getElementById("userReview").value; // Value from HTML input text
+    review.datePosted = null; // Change the datePosted to null instead of taking the timestamp on the client side;
+    review.rating = rating;
+
+    var updateReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
+
+    updateReview.open("PUT", review_url + "/" + JSON.parse(localStorage.getItem("review"))[0]["review_id"], true); //Use the HTTP POST method to send data to server
+
+    updateReview.setRequestHeader("Content-Type", "application/json");
+    updateReview.onload = function() {
+        fetchReviews(); // fetch all reviews again so that the web page can have updated reviews.
+        displayRestaurantDetails(restaurant_array[currentIndex]["restaurant_id"]);  
+        reloadPage(); 
+    };
+    // Convert the data in review object to JSON format before sending to the server.
+    updateReview.send(JSON.stringify(review)); 
+
+}
+
 
 

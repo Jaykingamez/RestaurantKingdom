@@ -11,5 +11,7 @@ function routeReview(app){
     app.route("/review/:id")
         .delete(reviewDBObject.deleteReview)
         .put(reviewDBObject.updateReview);
+    app.route("/review/restaurant")
+        .post(reviewDBObject.getCertainRestaurantReview);
 }
 module.exports = {routeReview}
