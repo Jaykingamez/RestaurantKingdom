@@ -73,7 +73,11 @@ function displayRestaurants(){
 }
 
 function displayRestaurantDetails(element){
-    var item = element.getAttribute("item");
+    if (isNaN(element)){
+        var item = element.getAttribute("item");
+    } else{
+        var item = element
+    }
     currentIndex = item;
     document.getElementById("restaurantName").textContent = restaurant_array[item]["restaurant_name"];  
     document.getElementById("restaurantPicture").src = restaurant_array[item]["restaurant_picture"];    

@@ -93,7 +93,8 @@ function addReview() {
 
     postReview.setRequestHeader("Content-Type", "application/json");
     postReview.onload = function() {
-        fetchReviews(); // fetch all comments again so that the web page can have updated comments.     
+        fetchReviews(); // fetch all comments again so that the web page can have updated comments. 
+        displayRestaurantDetails(restaurant_array[currentIndex]["restaurant_id"]);   
     };
 // Convert the data in review object to JSON format before sending to the server.
     postReview.send(JSON.stringify(review)); 
