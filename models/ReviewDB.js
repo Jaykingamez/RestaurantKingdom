@@ -74,7 +74,6 @@ class ReviewDB{
                 throw error;
             }
             else{
-                console.log(result);
                 respond.json(result);
             }
         });

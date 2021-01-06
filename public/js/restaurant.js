@@ -92,15 +92,17 @@ function displayRestaurantDetails(element){
     console.log(restaurant_array[item]["restaurant_id"]);
     console.log(account[0]["account_id"]);
     fetchCertainRestaurantReview(restaurant_array[item]["restaurant_id"] , account[0]["account_id"]).then( (returned_review) => {
-        if (returned_review.length > 0){
+        if (returned_review.length > 2){
             localStorage.setItem("review", returned_review);
             document.getElementById("writeOrEdit").textContent = "Edit your review";
             document.getElementById("writeOrEdit").setAttribute('onclick','getOldReview()')
             document.getElementById("submitReview").setAttribute('onclick','updateReview()')
+            document.getElementById("deleteReview").className = "btn btn-primary visible";
         }else{
             document.getElementById("writeOrEdit").textContent = "Write a review";
             document.getElementById("writeOrEdit").setAttribute('onclick','newReview()');
             document.getElementById("submitReview").setAttribute('onclick','addReview()');
+            document.getElementById("deleteReview").className = "btn btn-primary invisible";
         }
     });
     addOnTags(restaurant_array[item]["restaurant_id"], "").then( (returned_html) => {

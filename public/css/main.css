@@ -152,3 +152,14 @@ tr.table_row_border, td{
     margin-top: 10px;
 }
 
+/* review-modal.html css */
+/*---------------------------------------------------------------------------*/
+
+.invisible{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+

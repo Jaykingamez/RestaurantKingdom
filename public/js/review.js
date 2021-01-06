@@ -15,6 +15,7 @@ function fetchReviews() {
 function newReview() {
     //Initialise each HTML input elements in the modal window with default value.
         rating = 0;
+        changeStarImage(rating, ".star");
         document.getElementById("userReview").value = "";
         document.getElementById("creator-review").innerText = username +"'s review";
     }
@@ -93,8 +94,7 @@ function addReview() {
 
     postReview.setRequestHeader("Content-Type", "application/json");
     postReview.onload = function() {
-        fetchReviews(); // fetch all reviews again so that the web page can have updated reviews. 
-        displayRestaurantDetails(restaurant_array[currentIndex]["restaurant_id"]);   
+        reloadPage();
     };
 // Convert the data in review object to JSON format before sending to the server.
     postReview.send(JSON.stringify(review)); 
@@ -182,18 +182,29 @@ function updateReview(){
     review.datePosted = null; // Change the datePosted to null instead of taking the timestamp on the client side;
     review.rating = rating;
 
-    var updateReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
+    var updateReview = new XMLHttpRequest(); // new HttpRequest instance to update review
 
     updateReview.open("PUT", review_url + "/" + JSON.parse(localStorage.getItem("review"))[0]["review_id"], true); //Use the HTTP POST method to send data to server
 
     updateReview.setRequestHeader("Content-Type", "application/json");
     updateReview.onload = function() {
-        fetchReviews(); // fetch all reviews again so that the web page can have updated reviews.
-        displayRestaurantDetails(restaurant_array[currentIndex]["restaurant_id"]);  
         reloadPage(); 
     };
     // Convert the data in review object to JSON format before sending to the server.
     updateReview.send(JSON.stringify(review)); 
+
+}
+
+function deleteReview(){
+    var deleteReview = new XMLHttpRequest(); 
+    deleteReview.open("DELETE", review_url + "/" + JSON.parse(localStorage.getItem("review"))[0]["review_id"], true);
+    deleteReview.setRequestHeader("Content-Type", "application/json");
+    deleteReview.onload = function() {
+        reloadPage(); 
+    };
+    // Convert the data in review object to JSON format before sending to the server.
+    deleteReview.send(); 
+
 
 }
 
