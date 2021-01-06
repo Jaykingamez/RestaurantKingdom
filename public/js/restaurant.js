@@ -87,10 +87,10 @@ function displayRestaurantDetails(element){
     document.getElementById("telephone-number").textContent = restaurant_array[item]["telephone_number"];
     
     var restaurantRating = fetchRestaurantRating(restaurant_array[currentIndex]["restaurant_id"]);
-    console.log(restaurantRating);
+    //console.log(restaurantRating);
     changeStarImage(restaurantRating, ".restaurantStar");
-    console.log(restaurant_array[item]["restaurant_id"]);
-    console.log(account[0]["account_id"]);
+    //console.log(restaurant_array[item]["restaurant_id"]);
+    //console.log(account[0]["account_id"]);
     fetchCertainRestaurantReview(restaurant_array[item]["restaurant_id"] , account[0]["account_id"]).then( (returned_review) => {
         if (returned_review.length > 2){
             localStorage.setItem("review", returned_review);
@@ -103,6 +103,7 @@ function displayRestaurantDetails(element){
             document.getElementById("writeOrEdit").setAttribute('onclick','newReview()');
             document.getElementById("submitReview").setAttribute('onclick','addReview()');
             document.getElementById("deleteReview").className = "btn btn-primary invisible";
+
         }
     });
     addOnTags(restaurant_array[item]["restaurant_id"], "").then( (returned_html) => {

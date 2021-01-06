@@ -18,7 +18,7 @@ function newReview() {
         changeStarImage(rating, ".star");
         document.getElementById("userReview").value = "";
         document.getElementById("creator-review").innerText = username +"'s review";
-    }
+}
 
 //This function allows the user to mouse hover the black and white star
 //so that it will turn to a colored version when hovered
@@ -174,6 +174,19 @@ function getOldReview(){
     changeStarImage(rating, ".star");
 }
 
+function deleteExistingReview(){
+    var deleteReview = new XMLHttpRequest(); 
+    deleteReview.open("DELETE", review_url + "/" + JSON.parse(localStorage.getItem("review"))[0]["review_id"], true);
+    deleteReview.setRequestHeader("Content-Type", "application/json");
+    deleteReview.onload = function() {
+        reloadPage(); 
+    };
+    // Convert the data in review object to JSON format before sending to the server.
+    deleteReview.send(); 
+
+
+}
+
 function updateReview(){
     var review = new Object();
     review.accountId =  account[0]["account_id"];
@@ -195,18 +208,7 @@ function updateReview(){
 
 }
 
-function deleteReview(){
-    var deleteReview = new XMLHttpRequest(); 
-    deleteReview.open("DELETE", review_url + "/" + JSON.parse(localStorage.getItem("review"))[0]["review_id"], true);
-    deleteReview.setRequestHeader("Content-Type", "application/json");
-    deleteReview.onload = function() {
-        reloadPage(); 
-    };
-    // Convert the data in review object to JSON format before sending to the server.
-    deleteReview.send(); 
 
-
-}
 
 
 
