@@ -23,7 +23,7 @@
 
         <link rel="stylesheet" type="text/css" href="css/main.css">
 
-        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/facebook.js"></script>
         <script type="text/javascript" src="js/account.js"></script>
     </head>
     <body>
@@ -40,7 +40,7 @@
                 <input type="password" placeholder="Enter Password" id="password" name="password" required>
             </label>
             
-            <div class="fb-login-button" id="facebookLogin" data-scope="public_profile,email"  data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width="200px"></div>
+            <div class="fb-login-button" id="facebookLogin" onlogin="facebookButton()" data-scope="public_profile,email"  data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width="200px"></div>
             <button type="submit" value="submit" onclick="login()">Login</button>
             <div class="g-signin2 inline-block" id="googleLogin" data-onsuccess="onSignIn"></div>
 
