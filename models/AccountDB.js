@@ -6,6 +6,7 @@ var db = require('../db-connection');
 const Account = require('./Account');
 const { profile } = require('console');
 const { isElementAccessExpression, reduceEachTrailingCommentRange } = require('typescript');
+const { Z_ASCII } = require('zlib');
 const folderLocation = '/images/profile_photo/';
 
 class AccountDB{
@@ -64,6 +65,9 @@ class AccountDB{
             var file = files.upload_img.size
         }
         return new Promise((resolve, reject) =>{
+            if(typeof file == "undefined"){
+                resolve(filename);
+            }
             if(file.size != 0){
                 var sql = `SELECT AUTO_INCREMENT
                 FROM information_schema.tables
@@ -96,7 +100,7 @@ class AccountDB{
         //console.log("folderLocation + Filename is " +  folderLocation + filename);
         return new Promise((resolve, reject) =>{
             if (filename == null){
-                var pfpPath  = "/images/restaurantKingdom.png";
+                var pfpPath  = null;
             }else{
                 var pfpPath = folderLocation + filename;
             }
@@ -110,6 +114,8 @@ class AccountDB{
             var values = [accountObject.getUserId(), accountObject.getPassword(), accountObject.getFirstName(),
                 accountObject.getLastName(), accountObject.getGender(), accountObject.getAddress(), accountObject.getMobileNumber(),
                 accountObject.getEmailAddress(), accountObject.getProfilePhoto()];
+            
+            console.log(values);
             
             db.query(sql, values, function(error, result){
                 if (error) { reject(error); }

@@ -31,6 +31,10 @@ function goToLogin(){
     window.location.href = "index.html";
 }
 
+function noImageSource(image){
+    image.src= "/images/restaurantKingdom.png";
+}
+
 
 
 

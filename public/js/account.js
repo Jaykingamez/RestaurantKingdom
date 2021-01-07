@@ -34,7 +34,7 @@ function register(){
     //request.setRequestHeader("Content-Type", "multipart/form-data");
     request.onload = function(){
         response = JSON.parse(request.responseText);
-        if (repsonse = "done!"){
+        if (response = "done!"){
             window.location.href = "index.html";
         }
     };
@@ -59,20 +59,25 @@ function editProfile(){
 }
 
 function fetchAccountUsername(){
-    var request = new XMLHttpRequest();
+    return new Promise((resolve, reject) => {
+        var request = new XMLHttpRequest();
 
-    request.open('GET', account_url + "/" + username, true);
+        request.open('GET', account_url + "/" + username, true);
 
-    //This command starts the calling of the accounts api
-    request.onload = function() {
-    //get all the account information into our account variable
-    account = JSON.parse(request.responseText);
-    document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
-    document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
-    localStorage.setItem("account", request.responseText);
-    };
-
-    request.send();
+        //This command starts the calling of the accounts api
+        request.onload = function() {
+        //get all the account information into our account variable
+        if (request.responseText.length > 2){
+            account = JSON.parse(request.responseText);
+            document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
+            document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
+            localStorage.setItem("account", request.responseText);
+        }      
+        resolve(request.responseText);
+        };
+        request.send();
+    });
+    
 }
 
 function fetchAccountId(accountId){
@@ -133,11 +138,20 @@ function destroyAccount(){
 
     request.send();
     
+}
 
-
-
-
-
+function registerFacebook(name, email){
+    var formData = new FormData();
+    formData.append("register-username",name);
+    formData.append("register-email", email);
+    var request = new XMLHttpRequest();
+    request.open("POST", "/register", true);
+    //request.setRequestHeader("Content-Type", "multipart/form-data");
+    request.onload = function(){
+        response = JSON.parse(request.responseText);
+        window.location.href = "home.html";
+    };
+    request.send(formData);
 }
 
 

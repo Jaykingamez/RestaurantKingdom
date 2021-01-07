@@ -41,11 +41,14 @@ function facebookButton() {
             FB.api('/me', { fields: 'name, email' },
                 function (response) {
                     console.log(response);
-                    console.log("Successful login for: " + response.name);
-                    console.log(response.name);
-                    console.log(response.email);
                     localStorage.setItem("username", response.name);
-                    window.location.href = "home.html";
+                    fetchAccountUsername().then((account_response) =>{
+                        if (account_response.length > 2){
+                            window.location.href = "home.html";
+                        } else{
+                            registerFacebook(response.name, response.email);
+                        }
+                    })                    
                 });
 
         } else {
