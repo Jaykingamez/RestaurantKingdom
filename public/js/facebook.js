@@ -62,3 +62,17 @@ function facebookButton() {
     }
 
 }
+
+function registerFacebook(name, email){
+    var formData = new FormData();
+    formData.append("register-username",name);
+    formData.append("register-email", email);
+    var request = new XMLHttpRequest();
+    request.open("POST", "/register", true);
+    //request.setRequestHeader("Content-Type", "multipart/form-data");
+    request.onload = function(){
+        response = JSON.parse(request.responseText);
+        window.location.href = "home.html";
+    };
+    request.send(formData);
+}

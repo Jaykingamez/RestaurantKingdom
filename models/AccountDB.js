@@ -99,9 +99,16 @@ class AccountDB{
      static addAccountDatabase(fields, filename){
         //console.log("folderLocation + Filename is " +  folderLocation + filename);
         return new Promise((resolve, reject) =>{
-            if (filename == null){
+            console.log("The field says " + fields["register-image"]);
+            if(typeof fields["register-image"] !="undefined"){
+                console.log("there is a field");
+                var pfpPath = fields["register-image"];
+            }
+            else if (filename == null){
+                console.log("there is no field");
                 var pfpPath  = null;
-            }else{
+            }
+            else{
                 var pfpPath = folderLocation + filename;
             }
             var accountObject = new Account(null, fields["register-username"], fields["register-password"], fields["register-first-name"],
