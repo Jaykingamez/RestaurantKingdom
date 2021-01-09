@@ -35,6 +35,23 @@ function noImageSource(image){
     image.src= "/images/restaurantKingdom.png";
 }
 
+function changePageAndSendEmail(){
+    //might need to reset this??
+    document.getElementById("forgotPassword-body").innerHTML = 
+    `<header>
+        <h1 class="centered">Forgot Password</h1>
+    </header>
+
+    <p class="centered">
+        An email with instructions on changing your password
+        has been sent to the email address associated with the username.
+        Please proceed onward from there.
+    </p>`;
+
+    sendEmail();
+
+}
+
 
 
 
