@@ -10,6 +10,9 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+        <!-- Google log in functions-->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script type="text/javascript" src="js/pageInitialization.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
@@ -22,7 +25,7 @@
     </head>
     <body onload="initializeHome()">
         <header class="flex flex-row">
-            <img src="/images/restaurantKingdom.png" 
+            <img src="/images/restaurantKingdom.png" onclick="logOut()"
                  id="home-profile-photo" width="150" height="150" onerror="noImageSource(this)" alt="Cute anime girl" ">
             <h1 id="welcomeUser" class="align-top pad30 auto-margin">Welcome Username</h1>
             <a href="profile.html">

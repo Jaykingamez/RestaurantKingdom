@@ -158,20 +158,22 @@ class AccountDB{
     // but if it is a string, the correlated user_id AKA username is searched for
     getAccountData(request, respond){
         if ( isNaN(request.params.id) ){
-            //console.log(request.params.username);
-            //console.log("Here! Userrname")
+            console.log(request.params.id);
+            console.log("Here! Userrname")
             var accountID = request.params.id;
             var sql = "SELECT * FROM restaurant_review.account where user_id = ?";
         } else{
-            //console.log("Using account id");
+            console.log("Using account id");
             var accountID = request.params.id;
             var sql = "SELECT * FROM restaurant_review.account where account_id = ?";
         }   
         db.query(sql, accountID, function(error, result){
+            console.log(sql, accountID);
             if (error) { 
                 throw error; 
             }
-            else { 
+            else {
+                console.log(result);
                 respond.json(result); }
             });
     }

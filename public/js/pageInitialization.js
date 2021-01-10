@@ -1,7 +1,16 @@
 function initializeHome(){
-    username = localStorage.getItem("username")
+    username = localStorage.getItem("username");
+    
     document.getElementById("welcomeUser").innerHTML = "Welcome " + localStorage.getItem("username") ;
-    fetchAccountUsername();
+    fetchAccountUsername( (response) => {
+        if (account[0]["profile_photo"] != null){
+            document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
+            document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
+        }else{
+            document.getElementById("home-profile-photo").src = default_image;
+            document.getElementById("edit-profile-information").src = default_image;
+        }
+    });
     fetchRestaurants();
     fetchReviews();
     fetchAmenityTable();
@@ -51,6 +60,12 @@ function changePageAndSendEmail(){
     sendEmail();
 
 }
+
+function init() {
+    gapi.load('auth2', function() {
+        gapi.auth2.init(GOOGLE_CLIENT_ID);
+    });
+  }
 
 
 

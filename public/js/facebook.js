@@ -40,9 +40,9 @@ function facebookButton() {
             //display user data 
             FB.api('/me', { fields: 'name, email' },
                 function (response) {
-                    console.log(response);
                     localStorage.setItem("username", response.name);
                     fetchAccountUsername().then((account_response) =>{
+                        console.log("The response is " + account_response);
                         if (account_response.length > 2){
                             window.location.href = "home.html";
                         } else{

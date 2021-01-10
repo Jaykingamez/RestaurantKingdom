@@ -2,10 +2,11 @@ function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
     //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-
-    localStorage.setItem("username", profile.getName());
+    username = profile.getName();
+    localStorage.setItem("username", username);
 
     fetchAccountUsername().then((account_response) =>{
+        console.log("Repsonse is " +account_response);
         if (account_response.length > 2){
             window.location.href = "home.html";
         } else{

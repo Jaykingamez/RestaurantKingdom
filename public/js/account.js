@@ -62,19 +62,17 @@ function fetchAccountUsername(){
     return new Promise((resolve, reject) => {
         var request = new XMLHttpRequest();
 
-        request.open('GET', account_url + "/" + username, true);
+        request.open('GET', account_url + "/" + localStorage.getItem("username"), true);
 
         //This command starts the calling of the accounts api
         request.onload = function() {
         //get all the account information into our account variable
-        if (request.responseText.length > 2){
-            account = JSON.parse(request.responseText);
-            document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
-            document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
-            localStorage.setItem("account", request.responseText);
+            if (request.responseText.length > 2){
+                account = JSON.parse(request.responseText);
+                localStorage.setItem("account", request.responseText);
+            }  
+            resolve(request.responseText);
         }      
-        resolve(request.responseText);
-        };
         request.send();
     });
     
@@ -162,6 +160,16 @@ function resetPassword(){
         }
     };
     request.send(formData);
+}
+
+function logOut(){
+    localStorage.setItem("username", null);
+    localStorage.setItem("account", null);
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    window.location.href = "index.html"
 }
 
 
