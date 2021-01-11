@@ -137,9 +137,12 @@ class AccountDB{
         
         if (filename == null) return;
         if (typeof files.upload_img == "undefined"){
+            console.log("upload_img undefined!");
             var file = files.edit_upload_img;
         } else if (typeof files.edit_upload_img == "undefined"){
-            var file = files.upload_img.size
+            var file = files.upload_img;
+            //console.log(files.upload_img);
+            console.log("edit_upload_img undefined!");
         }
         return new Promise((resolve, reject) =>{
             var oldPath = file.path;
