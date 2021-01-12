@@ -147,8 +147,12 @@ function fetchRestaurantRating(restaurantID){
 
 function enterTags(event){
     if(event.key == "Enter"){
-        document.getElementById("TagStorage").innerHTML += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags search_tags">' + document.getElementById("filters").value + '</span>';
-        //document.getElementById("filters").innerText = "";
+        document.getElementById("TagStorage").innerHTML += '<span class="badge badge-pill badge-dark font-weight-bold larger_tags search_tags" item=' + tagCount + '>'+ 
+                                                                document.getElementById("filters").value + 
+                                                                    '<img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjYiIGhlaWdodD0iMjYiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDE3MnYtMTcyaDE3MnYxNzJ6IiBmaWxsPSJub25lIj48L3BhdGg+PGcgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTE0My43ODEyNSwxMjkuOTMwMjlsLTEzLjg3NjgsMTMuODUwOTZjLTIuNTMyNDYsMi41NTgyOSAtNi42NjcwNywyLjU1ODI5IC05LjIyNTM2LDBsLTM0LjY3OTA5LC0zNC42NTMyNGwtMzQuNjUzMjQsMzQuNjUzMjRjLTIuNTU4MjksMi41NTgyOSAtNi43MTg3NSwyLjU1ODI5IC05LjI1MTIxLDBsLTEzLjg3NjgsLTEzLjg1MDk2Yy0yLjU1ODI5LC0yLjU1ODI5IC0yLjU1ODI5LC02LjY5MjkxIDAsLTkuMjUxMmwzNC42NTMyNCwtMzQuNjc5MDlsLTM0LjY1MzI0LC0zNC42NTMyNGMtMi41MzI0NSwtMi41ODQxMyAtMi41MzI0NSwtNi43NDQ1OSAwLC05LjI1MTIxbDEzLjg3NjgsLTEzLjg3NjhjMi41MzI0NiwtMi41NTgyOSA2LjY5MjkxLC0yLjU1ODI5IDkuMjUxMjEsMGwzNC42NTMyNCwzNC42NzkwOWwzNC42NzkwOSwtMzQuNjc5MDljMi41NTgyOSwtMi41NTgyOSA2LjcxODc1LC0yLjU1ODI5IDkuMjI1MzYsMGwxMy44NzY4LDEzLjg1MDk2YzIuNTU4MjksMi41NTgyOSAyLjU1ODI5LDYuNzE4NzUgMC4wMjU4NCw5LjI3NzA0bC0zNC42NzkwOCwzNC42NTMyNGwzNC42NTMyNCwzNC42NzkwOWMyLjU1ODI5LDIuNTU4MjkgMi41NTgyOSw2LjY5MjkgMCw5LjI1MTJ6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=" onclick="deleteTags(this)">' +
+                                                            '</span>';
+        document.getElementById("filters").value = "";
+        tagCount += 1;
     }
 }
 
@@ -184,4 +188,8 @@ function checkTags(){
     }
 
     return eligible_tags;
+}
+
+function deleteTags(element){
+    element.parentNode.remove();
 }

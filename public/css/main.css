@@ -39,6 +39,10 @@ body{
     padding: 30px;
 }
 
+.pad40{
+    padding: 40px;
+}
+
 .go-right{
     float: right;
 }
@@ -67,6 +71,7 @@ body{
     display: inline-block;
     padding: 20px;
 }
+
 
 /* register.html css */
 /*---------------------------------------------------------------------------*/
@@ -162,4 +167,3 @@ tr.table_row_border, td{
 .visible{
     visibility: visible;
 }
-

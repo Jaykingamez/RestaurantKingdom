@@ -1,6 +1,7 @@
 function initializeHome(){
     username = localStorage.getItem("username");
     initGoogle();
+    tagCount = 0;
     
     document.getElementById("welcomeUser").innerHTML = "Welcome " + localStorage.getItem("username") ;
     fetchAccountUsername( (response) => {

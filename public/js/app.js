@@ -22,6 +22,8 @@ var cuisine_table = {};
 var restaurant_cuisine = null;
 var restaurant_amenity = null;
 
+var tagCount = 0;
+
 const starBWImage = "https://img.icons8.com/carbon-copy/100/000000/star.png";
 const starImage = "https://img.icons8.com/plasticine/100/000000/star--v1.png";
 

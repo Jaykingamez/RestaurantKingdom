@@ -26,13 +26,26 @@
     </head>
     <body onload="initializeHome()">
         <header class="flex flex-row">
-            <img src="/images/restaurantKingdom.png" onclick="logOut()"
-                 id="home-profile-photo" width="150" height="150" onerror="noImageSource(this)" alt="Cute anime girl" ">
+            <div>
+                <img src="/images/restaurantKingdom.png" onclick="logOut()"
+                    id="home-profile-photo" width="150" height="150" onerror="noImageSource(this)" alt="Cute anime girl">
+                <h2 class="centered">
+                    Logout
+                </h2>
+            </div>
+            
             <h1 id="welcomeUser" class="align-top pad30 auto-margin">Welcome Username</h1>
-            <a href="profile.html">
-                <img class="align-top " src="/images/restaurantKingdom.png" 
-                     id="edit-profile-information"` width="150" height="150" onerror="noImageSource(this)" alt="Cute anime girl" ">
-            </a>
+            
+            <div>
+                <a href="profile.html">
+                    <img class="align-top" src="/images/restaurantKingdom.png" 
+                        id="edit-profile-information"` width="150" height="150" onerror="noImageSource(this)" alt="Cute anime girl">
+                </a>
+                <h2 class="centered"> 
+                    Profile
+                </h2>
+            </div>
+            
         </header>
         <nav class="auto-margin arbitrary-width">
             <div>
@@ -42,7 +55,7 @@
                 </div>
                 <div>
                     <label for="filters">Filter: </label>
-                    <input id="filters" placeholder="Filter?" onkeypress="enterTags(event)">
+                    <input id="filters" placeholder="Type tag and press Enter" onkeypress="enterTags(event)">
                     <div id="TagStorage"></div>
                 </div>
             </div>
@@ -54,6 +67,9 @@
             <div w3-include-html="new-review-modal.html"></div>
             <div w3-include-html="other-review-modal.html"></div>
         </main>
+        <footer>
+            <a href="https://icons8.com/icon/83981/delete">Delete icon by Icons8</a>a>
+        </footer>
     </body>
     <script src="js/w3.js"></script>
     <script>
