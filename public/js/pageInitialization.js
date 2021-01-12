@@ -1,5 +1,6 @@
 function initializeHome(){
     username = localStorage.getItem("username");
+    initGoogle();
     
     document.getElementById("welcomeUser").innerHTML = "Welcome " + localStorage.getItem("username") ;
     fetchAccountUsername( (response) => {
@@ -61,9 +62,9 @@ function changePageAndSendEmail(){
 
 }
 
-function init() {
+function initGoogle() {
     gapi.load('auth2', function() {
-        gapi.auth2.init(GOOGLE_CLIENT_ID);
+        gapi.auth2.init();
     });
   }
 

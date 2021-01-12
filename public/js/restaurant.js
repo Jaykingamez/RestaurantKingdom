@@ -172,14 +172,14 @@ function searchRestaurant(){
 }
 
 function checkTags(){
-    var eligible_tags = {};
+    var eligible_tags = [];
     var filters = document.querySelectorAll('span.search_tags');
     for( var i = 0; i < filters.length ; i++){
         console.log(filters[i].innerText);
         if (Object.values(amenity_table).includes(filters[i].innerText)){
-            eligible_tags["amenity"] = filters[i].innerText;
+            eligible_tags.push(["amenity",filters[i].innerText]);
         } else if(Object.values(cuisine_table).includes(filters[i].innerText)){
-            eligible_tags["cuisine"] = filters[i].innerText;
+            eligible_tags.push(["cuisine",filters[i].innerText]);
         }
     }
 

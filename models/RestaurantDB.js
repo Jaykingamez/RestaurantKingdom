@@ -58,16 +58,17 @@ class RestaurantDB{
                    LEFT OUTER JOIN restaurant_cuisine ON restaurant.restaurant_id = restaurant_cuisine.restaurant_id
                    LEFT OUTER JOIN cuisine  ON restaurant_cuisine.cuisine_id = cuisine.cuisine_id
                    WHERE restaurant_name LIKE ?`;
-        
-        for (const [key, value] of Object.entries(tags)) {
-            sql += " AND " + key + " = ?";
-            values.push(value);
+
+        for (var element = 0; element < tags.length; element++){
+            sql += " AND " + tags[element][0] + " = ?";
+            values.push(tags[element][1]);
         }
         console.log(values);
         //dont forget group by
         sql += " GROUP BY restaurant.restaurant_id";
         //console.log(sql);
 
+        console.log(sql);
         db.query(sql, values, function(error, result){
             if(error){
                 throw error;
