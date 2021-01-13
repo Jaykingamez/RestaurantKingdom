@@ -35,6 +35,10 @@ body{
     vertical-align: top; 
 }
 
+.pad20{
+    padding: 20px;
+}
+
 .pad30{
     padding: 30px;
 }
@@ -133,13 +137,13 @@ body{
     font-size: 1.2em;
 }
 
-.table_row_border{
+/*.table_row_border{
     border-bottom: 3em solid transparent;
 }
 
 tr.table_row_border, td{
     border-top: 5px solid transparent;
-}
+}*/
 
 .pad15{
     padding: 15px;
@@ -166,4 +170,21 @@ tr.table_row_border, td{
 
 .visible{
     visibility: visible;
+}
+
+/* restaurant-modal.html css */
+/*---------------------------------------------------------------------------*/
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding:20px;
+    vertical-align: middle;
+    border: 5px solid black;
+    border-top: 5px solid black;
+    border-radius: 25px;
+    border-style: dashed;
+    
+}
+
+.badge-primary{
+    background-color: cornflowerblue;
 }
