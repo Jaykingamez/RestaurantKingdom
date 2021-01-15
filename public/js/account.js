@@ -139,27 +139,32 @@ function destroyAccount(){
 }
 
 function resetPassword(){
-    var formData = new FormData();
-    var accountDetails = JSON.parse(localStorage.getItem("account"))[0];
-    formData.append("profile-username", accountDetails["user_id"]);
-    formData.append("profile-password", document.getElementById("forgot-password"));
-    formData.append("profile-first-name", accountDetails["first-name"])
-    formData.append("profile-last-name", accountDetails["last-name"]);
-    formData.append("profile-gender", accountDetails["gender"]);
-    formData.append("profile-address", accountDetails["address"]);
-    formData.append("profile-mobile", accountDetails["mobile-number"]);
-    formData.append("profile-email", accountDetails["email"]);
+    if (document.getElementById("forgot-password").value === document.getElementById("forgot-confirm-password").value){
+        var formData = new FormData();
+        var accountDetails = JSON.parse(localStorage.getItem("account"))[0];
+        formData.append("profile-username", accountDetails["user_id"]);
+        formData.append("profile-password", document.getElementById("forgot-password").value);
+        formData.append("profile-first-name", accountDetails["first-name"])
+        formData.append("profile-last-name", accountDetails["last-name"]);
+        formData.append("profile-gender", accountDetails["gender"]);
+        formData.append("profile-address", accountDetails["address"]);
+        formData.append("profile-mobile", accountDetails["mobile-number"]);
+        formData.append("profile-email", accountDetails["email"]);
     
-    var request = new XMLHttpRequest();
-    request.open("PUT", "/profile/" + account[0]["account_id"], true);
-    //request.setRequestHeader("Content-Type", "multipart/form-data");
-    request.onload = function(){
-        response = JSON.parse(request.responseText);
-        if (repsonse = "done!"){
-            window.location.href = "index.html";
-        }
-    };
-    request.send(formData);
+        var request = new XMLHttpRequest();
+        request.open("PUT", "/profile/" + account[0]["account_id"], true);
+        //request.setRequestHeader("Content-Type", "multipart/form-data");
+        request.onload = function(){
+            response = JSON.parse(request.responseText);
+            if (repsonse = "done!"){
+                window.location.href = "index.html";
+            }
+        };
+        request.send(formData);
+    } else {
+        alert("Password and Confirm Password are not the same!");
+    }
+    
 }
 
 function logOut(){

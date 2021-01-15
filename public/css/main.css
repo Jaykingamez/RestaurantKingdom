@@ -199,6 +199,19 @@ tr.table_row_border, td{
     background-color: cornflowerblue;
 }
 
+
+/* Overridng default css */
 button, input, optgroup, select, textarea {
-    color: black;
+    color: #E3E2DF;
+    background-color: #EE4C7C;
 }
+
+body{
+   background-color: #9A1750 ; 
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #E3E2DF;
+    opacity: 1; /* Firefox */
+  }
+  

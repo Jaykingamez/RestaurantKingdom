@@ -4,14 +4,10 @@ function initializeHome(){
     tagCount = 0;
     
     document.getElementById("welcomeUser").innerHTML = "Welcome " + localStorage.getItem("username") ;
-    fetchAccountUsername( (response) => {
-        if (account[0]["profile_photo"] != null){
-            document.getElementById("home-profile-photo").src = account[0]["profile_photo"];
-            document.getElementById("edit-profile-information").src = account[0]["profile_photo"];
-        }else{
-            document.getElementById("home-profile-photo").src = default_image;
-            document.getElementById("edit-profile-information").src = default_image;
-        }
+    fetchAccountUsername().then( (response) => {
+        console.log("Displaying images!");
+        document.getElementById("home-profile-photo").src = JSON.parse(localStorage.getItem("account"))[0]["profile_photo"];
+        document.getElementById("edit-profile-information").src = JSON.parse(localStorage.getItem("account"))[0]["profile_photo"];
     });
     fetchRestaurants();
     fetchReviews();
@@ -32,6 +28,15 @@ function initializeProfile(){
     document.getElementById("profile-address").value = account[0]["address"];
     document.getElementById("profile-mobile").value = account[0]["mobile_number"];
     document.getElementById("profile-email").value = account[0]["email_address"];
+}
+
+function initializeResetPassword(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var resetPasswordUsername = urlParams.get("username");
+    localStorage.setItem("username", resetPasswordUsername);
+    fetchAccountUsername();
+
 }
 
 function reloadPage(){
