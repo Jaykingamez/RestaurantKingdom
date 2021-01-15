@@ -47,6 +47,8 @@ function noImageSource(image){
 }
 
 function changePageAndSendEmail(){
+    sendEmail();
+
     //might need to reset this??
     document.getElementById("forgotPassword-body").innerHTML = 
     `<header>
@@ -59,7 +61,7 @@ function changePageAndSendEmail(){
         Please proceed onward from there.
     </p>`;
 
-    sendEmail();
+   
 
 }
 

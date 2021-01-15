@@ -74,6 +74,16 @@ body{
 #searchbox{
     display: inline-block;
     padding: 20px;
+    border-radius: 25px;
+}
+
+#filters{
+    border-radius: 25px;
+}
+
+button *{
+    padding:5px;
+    border-radius: 25px;
 }
 
 
@@ -187,4 +197,8 @@ tr.table_row_border, td{
 
 .badge-primary{
     background-color: cornflowerblue;
+}
+
+button, input, optgroup, select, textarea {
+    color: black;
 }

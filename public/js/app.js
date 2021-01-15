@@ -28,7 +28,7 @@ const starBWImage = "https://img.icons8.com/carbon-copy/100/000000/star.png";
 const starImage = "https://img.icons8.com/plasticine/100/000000/star--v1.png";
 
 //Email
-const SENDGRID_API_KEY = "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";
+//const SENDGRID_API_KEY = "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";
 //google client id
 const GOOGLE_CLIENT_ID = "677532359284-0qorvkmbjqi03p0rb92ou4k24crqi89f.apps.googleusercontent.com";
 //default images

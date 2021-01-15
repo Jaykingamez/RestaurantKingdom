@@ -10,6 +10,7 @@ const routeRestaurant = require("./routes/routeRestaurant");
 const routeReview = require("./routes/routeReview");
 const routeAmenity = require("./routes/routeAmenity");
 const routeCuisine = require("./routes/routeCuisine");
+const routeEmail = require("./routes/routeEmail");
 
 const options = {
   key: fs.readFileSync('key.pem'),
@@ -23,7 +24,7 @@ var https = require('https');
 
 var host = "localhost";
 var port = 8080;
-var startPage = "ndex.html";
+var startPage = "index.html";
 
 
 app.use(express.static("./public"));
@@ -35,6 +36,7 @@ routeRestaurant.routeRestaurant(app);
 routeReview.routeReview(app);
 routeAmenity.routeAmenity(app);
 routeCuisine.routeCuisine(app);
+routeEmail.routeEmail(app);
 
 function gotoIndex(req, res) {
     console.log(req.params);
