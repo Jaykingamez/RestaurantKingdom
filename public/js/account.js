@@ -11,6 +11,8 @@ function login(){
         response = JSON.parse(request.responseText);
         if (response == "SUCCESS!"){
             window.location.href = "home.html";
+        } else{
+            alert("Login is not successful, please try again.");
         }
         //document.getElementById("loginForm").style.display="none";
         //document.getElementById("message").textContent = response.message;

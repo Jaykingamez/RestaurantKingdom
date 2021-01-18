@@ -7,6 +7,7 @@
 form label{
     padding: 10px;
     display: block;
+    color: #E3AFBC;
 }
 
 form button{
@@ -213,5 +214,35 @@ body{
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #E3E2DF;
     opacity: 1; /* Firefox */
+  }
+
+h1, h2{
+    color: #EE4C7C;
+  }
+
+a:-webkit-any-link {
+    color: #5D001E;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+footer{
+    background-color: #E3E2DF;
+}
+
+  /* profile-html css */
+/*---------------------------------------------------------------------------*/
+  .topleft {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 18px;
+  }
+
+  .bottomleft {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 18px;
   }
   

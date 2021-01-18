@@ -117,9 +117,11 @@ function displayOtherReviews(){
 
             //all this content get's iterated through to the last, that's why it repeats the last element continously
             var timestamp = review_array[count]["timestamp"];
+
+            var parsed_timestamp = timestamp.slice(0, 10) + " " + (parseInt(timestamp.slice(11,13)) + 8) + timestamp.slice(13,19);
             
 
-            fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table);
+            fetchAndAddCell(reviewerId, reviewerRating, parsed_timestamp, content, table);
         }
     }
     console.log(iterations);           
@@ -129,7 +131,7 @@ function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table){
     fetchAccountId(reviewerId).then( (retrievedAccount) =>{
         var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +                          
                         '<div>' + 
-                            '<img class="img-fluid" width="50" height="50" src=' + retrievedAccount[0]["profile_photo"] + '>';
+                            '<img class="img-fluid" width="50" height="50" onerror="noImageSource(this)" src=' + retrievedAccount[0]["profile_photo"] + '>';
             for(var star = 0; star < 5; star++){
                 if (star < reviewerRating){
                     cell += '<img class="img-fluid" width="50" height="50" src=' + starImage + '/>';
@@ -138,6 +140,7 @@ function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table){
                 }
                 
             }
+            
         cell += '<span class="align-top">' + retrievedAccount[0]["user_id"] + '</span>';
         cell += '<span class="text-right">' + timestamp + '</span>';
         cell += '</div>';
