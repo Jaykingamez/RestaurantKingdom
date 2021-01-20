@@ -121,17 +121,18 @@ function displayOtherReviews(){
             var parsed_timestamp = timestamp.slice(0, 10) + " " + (parseInt(timestamp.slice(11,13)) + 8) + timestamp.slice(13,19);
             
 
-            fetchAndAddCell(reviewerId, reviewerRating, parsed_timestamp, content, table);
+            fetchAndAddCell(reviewerId, reviewerRating, parsed_timestamp, content, table, count);
         }
     }
     console.log(iterations);           
 }
 
-function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table){
+function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table, count){
     fetchAccountId(reviewerId).then( (retrievedAccount) =>{
-        var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +                          
-                        '<div>' + 
-                            '<img class="img-fluid" width="50" height="50" onerror="noImageSource(this)" src=' + retrievedAccount[0]["profile_photo"] + '>';
+        var cell = '<div class="col-md-12" style="float: none; margin: 0 auto;">' +  
+                        '<a href="#otherUserReviewModal" data-toggle="modal" data-target="#otherUserReviewModal" item=' + count + ' onclick="getOtherReview(this)" >' +                      
+                            '<div>' + 
+                                '<img class="img-fluid" width="50" height="50" onerror="noImageSource(this)" src=' + retrievedAccount[0]["profile_photo"] + '>';
             for(var star = 0; star < 5; star++){
                 if (star < reviewerRating){
                     cell += '<img class="img-fluid" width="50" height="50" src=' + starImage + '/>';
@@ -145,6 +146,7 @@ function fetchAndAddCell(reviewerId, reviewerRating, timestamp, content, table){
         cell += '<span class="text-right">' + timestamp + '</span>';
         cell += '</div>';
         cell += '<p>' + content + '</p>';
+        cell += '</a>';
         cell += '</div>';
         table.insertAdjacentHTML('beforeend', cell); 
     });  
@@ -176,6 +178,22 @@ function getOldReview(){
     document.getElementById("creator-review").innerText = "Edit " + username +"'s review";
     changeStarImage(rating, ".star");
 }
+
+function getOtherReview(element){
+    var count = element.getAttribute("item");
+    var reviewerRating = review_array[count]["rating"];
+    var reviewerId = review_array[count]["account_id"];
+    var content = review_array[count]["content"];
+
+    fetchAccountId(reviewerId).then( (retrievedAccount) =>{
+        document.getElementById("other-user-review").innerText = retrievedAccount[0]["user_id"] +"'s review";
+        document.getElementById("otherUserReview").value = content;
+        changeStarImage(reviewerRating, ".otherStar");
+    });
+
+    hideModal("#otherReviewModal");
+}
+
 
 function deleteExistingReview(){
     var deleteReview = new XMLHttpRequest(); 
@@ -209,6 +227,15 @@ function updateReview(){
     // Convert the data in review object to JSON format before sending to the server.
     updateReview.send(JSON.stringify(review)); 
 
+}
+
+
+function hideModal(modal){
+    $(modal).modal('hide');
+}
+
+function showModal(modal){
+    $(modal).modal('show');
 }
 
 

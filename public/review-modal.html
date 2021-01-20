@@ -1,0 +1,35 @@
+<div class="modal fade" id="otherUserReviewModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3 id="other-user-review" class="modal-title text-light">Contribute a Review</h3>
+                <button type="button" class="close bg-light" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body px-5">
+                <!-- All input to be sent to server, and buttons must be within the 'form' tag -->
+                <form id="otherReviewForm">
+                    <div class="row text-center"  id="reviewBody">
+
+                        <label for="otherUserReview">Review</label>
+                        <textarea id="otherUserReview" required class="form-control form-rounded" rows="3" cols="100%"></textarea>
+
+                        <label for="rating">Rating</label>
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="otherStar" value="1" onclick="rateIt(this)" />
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="otherStar" value="2" onclick="rateIt(this)" />
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="otherStar" value="3" onclick="rateIt(this)" />
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="otherStar" value="4" onclick="rateIt(this)" />
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/star.png" class="otherStar" value="5" onclick="rateIt(this)" /> 
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="https://icons8.com/icon/67516/star">Star icon by Icons8</a>
+                        <a href="https://icons8.com/icon/104578/star">Star icon by Icons8</a>
+                        <button type="button" class="btn btn-secondary bg-dark" data-dismiss="modal" onclick="showModal('#otherReviewModal')">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

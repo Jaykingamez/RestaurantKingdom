@@ -203,7 +203,11 @@ tr.table_row_border, td{
 }
 
 .badge-primary{
-    background-color: cornflowerblue;
+    background-color: #E3AFBC;
+}
+
+.badge-dark{
+    background-color: #EE4C7C;
 }
 
 
@@ -229,6 +233,7 @@ body{
 
 h1, h2, h3{
     color:  #E3E2DF;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
   }
 
 p, span{
@@ -279,6 +284,12 @@ footer{
 
 tr{
     pointer-events: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #EE4c7C;
+    border-color: #EE4c7C;
 }
 
   /* profile-html css */
