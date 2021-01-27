@@ -12,7 +12,6 @@ form label{
 
 form button{
     /*display: inline-block;*/
-    margin-bottom: 10px;
     padding: 7.5px 50px;
     border-radius: 10px;
     
@@ -22,6 +21,15 @@ form div{
     /*display: inline-block;*/
     /*margin-bottom: 10px;*/ 
     vertical-align: top;   
+}
+
+#loginButton{
+    width: 235px;
+    height: 42px;
+}
+
+span span{
+    color: black;
 }
 /* home.html css */
 /*---------------------------------------------------------------------------*/
@@ -239,6 +247,8 @@ h1, h2, h3{
 p, span{
     color:  #E3E2DF;
 }
+
+
 
 p{
     margin: 10px 0px 0px 0px;

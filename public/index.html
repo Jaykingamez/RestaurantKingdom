@@ -46,22 +46,37 @@
             <label for="password">Password:
                 <input type="password" placeholder="Enter Password" id="password" name="password" required>
             </label>
-            
-            <div class="fb-login-button" id="facebookLogin" onlogin="facebookButton()" data-scope="public_profile,email"  data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width="200px"></div>
-            <button type="submit" value="submit" onclick="login()">Login</button>
-            <div class="g-signin2 inline-block" id="googleLogin" data-onsuccess="onSignIn"></div>
 
+            <div class="row">
+                <div class="col-md-5 center-block text-center">
+                    <button id="loginButton" type="submit" value="submit" onclick="login()">Login</button>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-5 center-block text-center">
+                    <div class="fb-login-button" id="facebookLogin" onlogin="facebookButton()" data-scope="public_profile,email"  data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false" data-width="200px"></div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-5 center-block text-center">
+                    <div class="g-signin2 inline-block" id="googleLogin" data-onsuccess="onSignIn" data-width="233" data-height="40"></div>
+                </div>
+            </div>
         </form>
 
         <br>
 
-        <div class="text-center">
-            <a href="register.html">
-                <button>Create new account</button>
-            </a>
-            <a href="forgot-password.html">
-                <button>Forgot Password?</button>
-            </a>
+        <div class="row">
+            <div class="col-xs-12 center-block text-center">
+                <a class="text-center" href="register.html">
+                    <button>Create new account</button>
+                </a>
+                <a class="text-center" href="forgot-password.html">
+                    <button>Forgot Password?</button>
+                </a>
+            </div>
         </div>
     </body>
 </html>
