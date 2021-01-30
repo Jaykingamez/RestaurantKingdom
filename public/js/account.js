@@ -146,12 +146,12 @@ function resetPassword(){
         var accountDetails = JSON.parse(localStorage.getItem("account"))[0];
         formData.append("profile-username", accountDetails["user_id"]);
         formData.append("profile-password", document.getElementById("forgot-password").value);
-        formData.append("profile-first-name", accountDetails["first-name"])
-        formData.append("profile-last-name", accountDetails["last-name"]);
+        formData.append("profile-first-name", accountDetails["first_name"])
+        formData.append("profile-last-name", accountDetails["last_name"]);
         formData.append("profile-gender", accountDetails["gender"]);
         formData.append("profile-address", accountDetails["address"]);
-        formData.append("profile-mobile", accountDetails["mobile-number"]);
-        formData.append("profile-email", accountDetails["email"]);
+        formData.append("profile-mobile", accountDetails["mobile_number"]);
+        formData.append("profile-email", accountDetails["email_address"]);
     
         var request = new XMLHttpRequest();
         request.open("PUT", "/profile/" + account[0]["account_id"], true);
